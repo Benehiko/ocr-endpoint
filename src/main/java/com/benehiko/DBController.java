@@ -12,9 +12,12 @@ import com.company.acs.acs.acs.location.LocationManager;
 import com.company.acs.acs.acs.numberplate.Numberplate;
 import com.company.acs.acs.acs.numberplate.NumberplateManager;
 import com.company.acs.acs.acs.user.User;
+import com.company.acs.acs.acs.user.UserImpl;
 import com.company.acs.acs.acs.user.UserManager;
 import com.company.acs.acs.acs.userauth.UserAuthManager;
 import com.company.acs.acs.acs.userauth2.UserAuth2Manager;
+import com.company.acs.acs.acs.usergroup.UserGroup;
+import com.company.acs.acs.acs.usergroup.UserGroupImpl;
 import com.company.acs.acs.acs.usergroup.UserGroupManager;
 import com.speedment.common.tuple.Tuple3;
 import com.speedment.common.tuple.Tuples;
@@ -27,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
 
@@ -58,7 +62,20 @@ public class DBController {
         joinComponent = app.getOrThrow(JoinComponent.class);
     }
 
+    /*
+    /------------------------/
+    Devices Part
+    /-----------------------/
+     */
+
+    /**
+     *
+     * @param id
+     * @param user
+     * @return
+     */
     @PutMapping(path = "devices/{id}/addUser", produces = "application/json")
+    @ResponseBody
     boolean addDeviceUser(@RequestParam int id, @RequestBody User user){
         User tmpUser = userManager.stream().filter(User.USER_NAME.equal(user.getUserName())).findAny().orElse(null);
         Device tmpDevice = deviceManager.stream().filter(Device.DEVICE_ID.equal(id)).findAny().orElse(null);
@@ -94,34 +111,165 @@ public class DBController {
         return devices;
     }
 
+    /*
+    /------------------------/
+    Fleet Vehicles part
+    /-----------------------/
+     */
+
+    /**
+     * Return a specific fleet vehicle specified by the numberplate identifier
+     * @param numberplate
+     * @return
+     */
     @GetMapping("fleetvehicles/{numberplate}")
     FleetVehicle getFleetByNumberplate(@PathVariable String numberplate) {
         return fleetVehicleManager.stream().filter(FleetVehicle.NUMBERPLATE.equal(numberplate)).findAny().orElse(null);
     }
 
+    /**
+     * Return all fleet vehicles
+     * @return
+     */
     @GetMapping(path = "fleetvehicles", produces = "application/json")
     List<FleetVehicle> getFleet() {
         return fleetVehicleManager.stream().collect(toList());
     }
 
-    @GetMapping(path = "users", produces = "application/json")
+    /*
+    /---------------------/
+    User part
+    /---------------------/
+     */
+
+    /**
+     * Return all Users
+     * @return
+     */
+    @GetMapping("users")
     @ResponseBody
     List<User> getUsers(){
         return userManager.stream().collect(toList());
     }
 
+    /**
+     * Return specific User by USERID
+     * @param userId
+     * @return
+     */
     @GetMapping("users/{id}")
     @ResponseBody
-    User getUserById(@PathVariable int userId) {
-        return userManager.stream().filter(User.USER_ID.equal(userId)).findAny().orElse(null);
+    Optional<User> getUserById(@PathVariable int userId) {
+        return userManager.stream().filter(User.USER_ID.equal(userId)).findFirst();
     }
 
+    /**
+     * Return all Users by Firstname and Lastname
+     * @param firstname
+     * @param lastname
+     * @return
+     */
     @GetMapping("users/{firstname}/{lastname}")
     @ResponseBody
     List<User> getUserByName(@PathVariable String firstname, @PathVariable String lastname){
-        return userManager.stream().filter(User.FIRST_NAME.containsIgnoreCase(firstname).and(User.LAST_NAME.containsIgnoreCase(lastname))).collect(toList());
+        return userManager.stream().filter(User.FIRST_NAME.equalIgnoreCase(firstname).and(User.LAST_NAME.equalIgnoreCase(lastname))).collect(toList());
     }
 
+    /**
+     * Return User by Username
+     * @param username
+     * @return
+     */
+    @GetMapping("users/{username}")
+    @ResponseBody
+    Optional<User> getUserByUsername(@PathVariable String username){
+        return userManager.stream().filter(User.USER_NAME.equalIgnoreCase(username)).findFirst(); //collect(toList());
+    }
+
+    /**
+     * Add User
+     * @param username
+     * @param firstName
+     * @param lastName
+     * @param groupName
+     * @return
+     */
+    @PostMapping(path = "users", produces = "application/json")
+    @ResponseBody
+    boolean addUser(@RequestParam("username") String username, @RequestParam("firstname") String firstName, @RequestParam("lastname") String lastName, @RequestParam("usergroup") String groupName){
+        try{
+            Optional<UserGroup> userGroup = userGroupManager.stream().filter(UserGroup.NAME.equal(groupName)).findFirst();
+            int userGroupId;
+
+            if (!userGroup.isPresent()) {
+                UserGroup userGroup1 = new UserGroupImpl().setLevel(1).setName(groupName);
+                userGroupManager.persist(userGroup1);
+                userGroupId = userGroup1.getUsergroupId();
+            }else{
+                userGroupId = userGroup.get().getUsergroupId();
+            }
+            User user = new UserImpl().setUserName(username).setFirstName(firstName).setLastName(lastName).setUserUsergroupId(userGroupId);
+            userManager.persist(user);
+            return true;
+        }catch (SpeedmentException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Delete user based on username
+     * @param username
+     * @return
+     */
+    @DeleteMapping(path = "users", produces = "application/json")
+    @ResponseBody
+    boolean removeUser(@RequestParam("username") String username){
+        try{
+            User user = userManager.stream().filter(User.USER_NAME.equal(username)).findFirst().orElse(null);
+            if (user != null) {
+                userManager.remove(user);
+                return true;
+            }
+        }catch (SpeedmentException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+    /**
+     * Update User
+     * @param username
+     * @param firstname
+     * @param lastname
+     * @param usergroup
+     * @return boolean based on if update succeeded or not
+     */
+    @PutMapping(path = "users", produces = "application/json")
+    @ResponseBody
+    boolean updateUser(@RequestParam("username") String username, @RequestParam("firstname") String firstname, @RequestParam("lastname") String lastname, @RequestParam("usergroup") String usergroup){
+        try{
+            UserGroup userGroup = userGroupManager.stream().filter(UserGroup.NAME.equalIgnoreCase(usergroup)).findFirst().orElse(null);
+            if (userGroup == null) {
+                userGroup = new UserGroupImpl().setLevel(1).setName(usergroup);
+                userGroupManager.persist(userGroup);
+            }
+            User user = new UserImpl().setUserName(username).setFirstName(firstname).setLastName(lastname).setUserUsergroupId(userGroup.getUsergroupId());
+            userManager.update(user);
+            return true;
+        }catch (SpeedmentException e){
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+    /*
+    /-------------------------/
+    Vehicles recorded
+     */
+    /**
+     * Return all Vehicles recorded in the system
+     * @return
+     */
     @GetMapping("vehicles")
     @ResponseBody
     List getVehicles(){
@@ -131,6 +279,12 @@ public class DBController {
         return vehicles;
     }
 
+    /**
+     * Get Vehicles between from and to date
+     * @param from
+     * @param to
+     * @return
+     */
     @GetMapping("vehicles/{from}/{to}")
     @ResponseBody
     List getVehiclesByDate(@PathVariable Timestamp from, @PathVariable Timestamp to){
@@ -142,6 +296,17 @@ public class DBController {
         return result;
     }
 
+
+    /*
+    /----------------------/
+    Get fleet vehicles
+    /---------------------/
+     */
+    /**
+     * Get fleetVehicles
+     * @param fleetVehicle
+     * @return
+     */
     @PostMapping(path = "vehicles", consumes = "application/json", produces = "application/json")
     @ResponseBody
     boolean addVehicle(@RequestBody FleetVehicle fleetVehicle){

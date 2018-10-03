@@ -42,7 +42,7 @@ public class OcrController {
         numberplateManager = app.getOrThrow(NumberplateManager.class);
     }
 
-    @PostMapping("/pic/pi")
+    @PostMapping(path = "/pic/pi", produces = "application/json")
     @ResponseBody
     void getPiOcr(@RequestParam("timestamp") String timestamp, @RequestParam("mac") String mac, @RequestParam("images") List<MultipartFile> images) {
         List<byte[]> imgs = getBytes(images);
@@ -55,7 +55,7 @@ public class OcrController {
         });
     }
 
-    @PostMapping("/pic/mobile")
+    @PostMapping(path = "/pic/mobile", produces = "application/json")
     @ResponseBody
     List<String> getMobileOcr(@RequestParam("timestamp") String timestamp, @RequestParam("mac") String mac, @RequestParam("images") List<MultipartFile> images) throws ExecutionException, InterruptedException {
         List<byte[]> imgs = getBytes(images);
