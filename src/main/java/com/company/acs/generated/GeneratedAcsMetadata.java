@@ -35,8 +35,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
         initPart9(sb);
         initPart10(sb);
         initPart11(sb);
-        initPart12(sb);
-        initPart13(sb);
         return sb.toString();
     }
     
@@ -49,7 +47,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
         Stream.of(
             "{",
             "  \"config\" : {",
-            "    \"appId\" : \"e0f4d19e-ac09-44ad-a010-e0bff5a0f75c\",",
+            "    \"appId\" : \"e81b8b37-56d1-4ecd-8f6b-89708ed36b44\",",
             "    \"companyName\" : \"company\",",
             "    \"dbmses\" : [",
             "      {",
@@ -58,7 +56,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "        \"id\" : \"ACS\",",
             "        \"ipAddress\" : \"192.168.122.5\",",
             "        \"name\" : \"ACS\",",
-            "        \"nameProtected\" : true,",
             "        \"port\" : 3306,",
             "        \"schemas\" : [",
             "          {",
@@ -66,7 +63,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "            \"expanded\" : true,",
             "            \"id\" : \"ACS\",",
             "            \"name\" : \"ACS\",",
-            "            \"nameProtected\" : true,",
             "            \"tables\" : [",
             "              {",
             "                \"columns\" : [",
@@ -147,14 +143,14 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"foreignColumnName\" : \"userId\",",
             "                        \"foreignDatabaseName\" : \"ACS\",",
             "                        \"foreignSchemaName\" : \"ACS\",",
-            "                        \"foreignTableName\" : \"User\","
+            "                        \"foreignTableName\" : \"User\",",
+            "                        \"id\" : \"device_user\",",
+            "                        \"name\" : \"device_user\","
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart1(StringBuilder sb) {
         Stream.of(
-            "                        \"id\" : \"device_user\",",
-            "                        \"name\" : \"device_user\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
@@ -253,14 +249,14 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"nullable\" : false,",
             "                    \"ordinalPosition\" : 1,",
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
-            "                  },"
+            "                  },",
+            "                  {",
+            "                    \"databaseType\" : \"java.lang.String\","
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart2(StringBuilder sb) {
         Stream.of(
-            "                  {",
-            "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"numberplate\",",
@@ -359,152 +355,14 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"id\" : \"vehicleId\",",
             "                    \"name\" : \"vehicleId\",",
-            "                    \"ordinalPosition\" : 1"
+            "                    \"ordinalPosition\" : 1",
+            "                  }",
+            "                ]"
         ).forEachOrdered(sb::append);
     }
     
     private static void initPart3(StringBuilder sb) {
         Stream.of(
-            "                  }",
-            "                ]",
-            "              },",
-            "              {",
-            "                \"columns\" : [",
-            "                  {",
-            "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"guardId\",",
-            "                    \"name\" : \"guardId\",",
-            "                    \"nullable\" : false,",
-            "                    \"ordinalPosition\" : 1,",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
-            "                  },",
-            "                  {",
-            "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"userId\",",
-            "                    \"name\" : \"userId\",",
-            "                    \"nullable\" : false,",
-            "                    \"ordinalPosition\" : 2,",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
-            "                  },",
-            "                  {",
-            "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"guard_device\",",
-            "                    \"name\" : \"guard_device\",",
-            "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 3",
-            "                  }",
-            "                ],",
-            "                \"enabled\" : true,",
-            "                \"expanded\" : false,",
-            "                \"foreignKeys\" : [",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"foreignKeyColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"foreignColumnName\" : \"deviceId\",",
-            "                        \"foreignDatabaseName\" : \"ACS\",",
-            "                        \"foreignSchemaName\" : \"ACS\",",
-            "                        \"foreignTableName\" : \"Device\",",
-            "                        \"id\" : \"guard_device\",",
-            "                        \"name\" : \"guard_device\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"id\" : \"Guard_Device_deviceId_fk\",",
-            "                    \"name\" : \"Guard_Device_deviceId_fk\"",
-            "                  }",
-            "                ],",
-            "                \"id\" : \"Guard\",",
-            "                \"indexes\" : [",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"Guard_Id_UNIQUE\",",
-            "                    \"indexColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"guardId\",",
-            "                        \"name\" : \"guardId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"Guard_Id_UNIQUE\",",
-            "                    \"unique\" : true",
-            "                  },",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"Guard_userId_uindex\",",
-            "                    \"indexColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"userId\",",
-            "                        \"name\" : \"userId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"Guard_userId_uindex\",",
-            "                    \"unique\" : true",
-            "                  },",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"PRIMARY\",",
-            "                    \"indexColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"guardId\",",
-            "                        \"name\" : \"guardId\",",
-            "                        \"orderType\" : \"ASC\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart4(StringBuilder sb) {
-        Stream.of(
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"PRIMARY\",",
-            "                    \"unique\" : true",
-            "                  },",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"Guard_Device_deviceId_fk\",",
-            "                    \"indexColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"guard_device\",",
-            "                        \"name\" : \"guard_device\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"Guard_Device_deviceId_fk\",",
-            "                    \"unique\" : false",
-            "                  }",
-            "                ],",
-            "                \"isView\" : false,",
-            "                \"name\" : \"Guard\",",
-            "                \"primaryKeyColumns\" : [",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"guardId\",",
-            "                    \"name\" : \"guardId\",",
-            "                    \"ordinalPosition\" : 1",
-            "                  }",
-            "                ]",
             "              },",
             "              {",
             "                \"columns\" : [",
@@ -571,12 +429,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                \"id\" : \"Image\",",
             "                \"indexes\" : [",
             "                  {",
-            "                    \"enabled\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart5(StringBuilder sb) {
-        Stream.of(
+            "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
             "                    \"id\" : \"imageId_UNIQUE\",",
             "                    \"indexColumns\" : [",
@@ -610,7 +463,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
-            "                    \"id\" : \"Images_Device_deviceId_fk\",",
+            "                    \"id\" : \"Images_Device_deviceId_fk\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart4(StringBuilder sb) {
+        Stream.of(
             "                    \"indexColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
@@ -677,12 +535,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  }",
             "                ],",
-            "                \"enabled\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart6(StringBuilder sb) {
-        Stream.of(
+            "                \"enabled\" : true,",
             "                \"expanded\" : false,",
             "                \"id\" : \"Location\",",
             "                \"indexes\" : [",
@@ -716,7 +569,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                      },",
             "                      {",
             "                        \"expanded\" : true,",
-            "                        \"id\" : \"Devices_Guard_guardId\",",
+            "                        \"id\" : \"Devices_Guard_guardId\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart5(StringBuilder sb) {
+        Stream.of(
             "                        \"name\" : \"Devices_Guard_guardId\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 2",
@@ -728,7 +586,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"Location\",",
-            "                \"nameProtected\" : true,",
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"enabled\" : true,",
@@ -752,134 +609,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"moderatorId\",",
-            "                    \"name\" : \"moderatorId\",",
-            "                    \"nullable\" : false,",
-            "                    \"ordinalPosition\" : 1,",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
-            "                  },",
-            "                  {",
-            "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"Users_userId\",",
-            "                    \"name\" : \"Users_userId\",",
-            "                    \"nullable\" : false,",
-            "                    \"ordinalPosition\" : 2,",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
-            "                  }",
-            "                ],",
-            "                \"enabled\" : true,",
-            "                \"expanded\" : false,",
-            "                \"foreignKeys\" : [",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"foreignKeyColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"foreignColumnName\" : \"userId\",",
-            "                        \"foreignDatabaseName\" : \"ACS\",",
-            "                        \"foreignSchemaName\" : \"ACS\",",
-            "                        \"foreignTableName\" : \"User\",",
-            "                        \"id\" : \"Users_userId\",",
-            "                        \"name\" : \"Users_userId\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart7(StringBuilder sb) {
-        Stream.of(
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"id\" : \"fk_Moderator_Users1\",",
-            "                    \"name\" : \"fk_Moderator_Users1\"",
-            "                  }",
-            "                ],",
-            "                \"id\" : \"Moderator\",",
-            "                \"indexes\" : [",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"Moderator_Id_UNIQUE\",",
-            "                    \"indexColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"moderatorId\",",
-            "                        \"name\" : \"moderatorId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"Moderator_Id_UNIQUE\",",
-            "                    \"unique\" : true",
-            "                  },",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"PRIMARY\",",
-            "                    \"indexColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"moderatorId\",",
-            "                        \"name\" : \"moderatorId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      },",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"Users_userId\",",
-            "                        \"name\" : \"Users_userId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 2",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"PRIMARY\",",
-            "                    \"unique\" : true",
-            "                  },",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"fk_Moderator_Users1_idx\",",
-            "                    \"indexColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"Users_userId\",",
-            "                        \"name\" : \"Users_userId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"fk_Moderator_Users1_idx\",",
-            "                    \"unique\" : false",
-            "                  }",
-            "                ],",
-            "                \"isView\" : false,",
-            "                \"name\" : \"Moderator\",",
-            "                \"nameProtected\" : true,",
-            "                \"primaryKeyColumns\" : [",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"Users_userId\",",
-            "                    \"name\" : \"Users_userId\",",
-            "                    \"ordinalPosition\" : 2",
-            "                  },",
-            "                  {",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"moderatorId\",",
-            "                    \"name\" : \"moderatorId\",",
-            "                    \"ordinalPosition\" : 1",
-            "                  }",
-            "                ]",
-            "              },",
-            "              {",
-            "                \"columns\" : [",
-            "                  {",
-            "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
             "                    \"id\" : \"numberplateId\",",
             "                    \"name\" : \"numberplateId\",",
             "                    \"nullable\" : false,",
@@ -889,12 +618,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart8(StringBuilder sb) {
-        Stream.of(
+            "                    \"expanded\" : true,",
             "                    \"id\" : \"numberplatestring\",",
             "                    \"name\" : \"numberplatestring\",",
             "                    \"nullable\" : false,",
@@ -951,7 +675,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                      {",
             "                        \"expanded\" : true,",
             "                        \"id\" : \"numberplateId\",",
-            "                        \"name\" : \"numberplateId\",",
+            "                        \"name\" : \"numberplateId\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart6(StringBuilder sb) {
+        Stream.of(
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
@@ -994,13 +723,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"Numberplate\",",
-            "                \"nameProtected\" : true,",
-            "                \"primaryKeyColumns\" : ["
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart9(StringBuilder sb) {
-        Stream.of(
+            "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
@@ -1050,24 +773,20 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 4",
             "                  },",
             "                  {",
-            "                    \"databaseType\" : \"java.lang.String\",",
-            "                    \"enabled\" : true,",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"userPassword\",",
-            "                    \"name\" : \"userPassword\",",
-            "                    \"nullable\" : false,",
-            "                    \"ordinalPosition\" : 5",
-            "                  },",
-            "                  {",
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"user_usergroupId\",",
             "                    \"name\" : \"user_usergroupId\",",
             "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 6",
+            "                    \"ordinalPosition\" : 5",
             "                  }",
-            "                ],",
+            "                ],"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart7(StringBuilder sb) {
+        Stream.of(
             "                \"enabled\" : true,",
             "                \"expanded\" : false,",
             "                \"foreignKeys\" : [",
@@ -1101,12 +820,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"expanded\" : true,",
             "                        \"id\" : \"userId\",",
             "                        \"name\" : \"userId\",",
-            "                        \"orderType\" : \"ASC\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart10(StringBuilder sb) {
-        Stream.of(
+            "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
@@ -1164,7 +878,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"User\",",
-            "                \"nameProtected\" : true,",
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"enabled\" : true,",
@@ -1174,7 +887,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 1",
             "                  }",
             "                ]",
-            "              },",
+            "              },"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart8(StringBuilder sb) {
+        Stream.of(
             "              {",
             "                \"columns\" : [",
             "                  {",
@@ -1207,12 +925,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"ordinalPosition\" : 3",
             "                  },",
             "                  {",
-            "                    \"databaseType\" : \"java.lang.String\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart11(StringBuilder sb) {
-        Stream.of(
+            "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"salt\",",
@@ -1223,6 +936,26 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"enabled\" : true,",
             "                \"expanded\" : false,",
+            "                \"foreignKeys\" : [",
+            "                  {",
+            "                    \"enabled\" : true,",
+            "                    \"expanded\" : false,",
+            "                    \"foreignKeyColumns\" : [",
+            "                      {",
+            "                        \"expanded\" : true,",
+            "                        \"foreignColumnName\" : \"userName\",",
+            "                        \"foreignDatabaseName\" : \"ACS\",",
+            "                        \"foreignSchemaName\" : \"ACS\",",
+            "                        \"foreignTableName\" : \"User\",",
+            "                        \"id\" : \"username\",",
+            "                        \"name\" : \"username\",",
+            "                        \"ordinalPosition\" : 1",
+            "                      }",
+            "                    ],",
+            "                    \"id\" : \"UserAuth_User_userName_fk\",",
+            "                    \"name\" : \"UserAuth_User_userName_fk\"",
+            "                  }",
+            "                ],",
             "                \"id\" : \"UserAuth\",",
             "                \"indexes\" : [",
             "                  {",
@@ -1260,7 +993,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
-            "                    \"id\" : \"UserAuth_username_uindex\",",
+            "                    \"id\" : \"UserAuth_username_uindex\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart9(StringBuilder sb) {
+        Stream.of(
             "                    \"indexColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
@@ -1276,7 +1014,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"UserAuth\",",
-            "                \"nameProtected\" : true,",
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"enabled\" : true,",
@@ -1313,12 +1050,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"hash\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart12(StringBuilder sb) {
-        Stream.of(
+            "                    \"id\" : \"hash\",",
             "                    \"name\" : \"hash\",",
             "                    \"nullable\" : false,",
             "                    \"ordinalPosition\" : 3",
@@ -1367,7 +1099,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"id\" : \"authId\",",
             "                        \"name\" : \"authId\",",
             "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
+            "                        \"ordinalPosition\" : 1"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart10(StringBuilder sb) {
+        Stream.of(
             "                      }",
             "                    ],",
             "                    \"name\" : \"PRIMARY\",",
@@ -1408,7 +1145,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"UserAuth2\",",
-            "                \"nameProtected\" : true,",
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"enabled\" : true,",
@@ -1419,12 +1155,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                  }",
             "                ]",
             "              },",
-            "              {"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart13(StringBuilder sb) {
-        Stream.of(
+            "              {",
             "                \"columns\" : [",
             "                  {",
             "                    \"autoIncrement\" : true,",
@@ -1474,7 +1205,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
-            "                    \"name\" : \"PRIMARY\",",
+            "                    \"name\" : \"PRIMARY\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart11(StringBuilder sb) {
+        Stream.of(
             "                    \"unique\" : true",
             "                  },",
             "                  {",
@@ -1496,7 +1232,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                ],",
             "                \"isView\" : false,",
             "                \"name\" : \"UserGroup\",",
-            "                \"nameProtected\" : true,",
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"enabled\" : true,",

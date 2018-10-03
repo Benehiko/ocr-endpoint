@@ -1,11 +1,14 @@
 package com.company.acs.acs.acs.userauth.generated;
 
+import com.company.acs.acs.acs.user.User;
 import com.company.acs.acs.acs.userauth.UserAuth;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
+import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
+import com.speedment.runtime.field.StringForeignKeyField;
 import com.speedment.runtime.typemapper.TypeMapper;
 
 /**
@@ -36,10 +39,11 @@ public interface GeneratedUserAuth {
      * This Field corresponds to the {@link UserAuth} field that can be obtained
      * using the {@link UserAuth#getUsername()} method.
      */
-    StringField<UserAuth, String> USERNAME = StringField.create(
+    StringForeignKeyField<UserAuth, String, User> USERNAME = StringForeignKeyField.create(
         Identifier.USERNAME,
         UserAuth::getUsername,
         UserAuth::setUsername,
+        User.USER_NAME,
         TypeMapper.identity(),
         true
     );
@@ -133,6 +137,15 @@ public interface GeneratedUserAuth {
      * @return     this UserAuth instance
      */
     UserAuth setSalt(String salt);
+    
+    /**
+     * Queries the specified manager for the referenced User. If no such User
+     * exists, an {@code NullPointerException} will be thrown.
+     * 
+     * @param foreignManager the manager to query for the entity
+     * @return               the foreign entity referenced
+     */
+    User findUsername(Manager<User> foreignManager);
     
     enum Identifier implements ColumnIdentifier<UserAuth> {
         

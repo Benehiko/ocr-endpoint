@@ -27,7 +27,6 @@ public abstract class GeneratedUserImpl implements User {
     private String firstName;
     private String lastName;
     private String userName;
-    private String userPassword;
     private Integer userUsergroupId;
     
     protected GeneratedUserImpl() {}
@@ -50,11 +49,6 @@ public abstract class GeneratedUserImpl implements User {
     @Override
     public String getUserName() {
         return userName;
-    }
-    
-    @Override
-    public String getUserPassword() {
-        return userPassword;
     }
     
     @Override
@@ -87,12 +81,6 @@ public abstract class GeneratedUserImpl implements User {
     }
     
     @Override
-    public User setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-        return this;
-    }
-    
-    @Override
     public User setUserUsergroupId(Integer userUsergroupId) {
         this.userUsergroupId = userUsergroupId;
         return this;
@@ -114,7 +102,6 @@ public abstract class GeneratedUserImpl implements User {
         sj.add("firstName = "       + Objects.toString(getFirstName()));
         sj.add("lastName = "        + Objects.toString(getLastName()));
         sj.add("userName = "        + Objects.toString(getUserName()));
-        sj.add("userPassword = "    + Objects.toString(getUserPassword()));
         sj.add("userUsergroupId = " + Objects.toString(OptionalUtil.unwrap(getUserUsergroupId())));
         return "UserImpl " + sj.toString();
     }
@@ -128,7 +115,6 @@ public abstract class GeneratedUserImpl implements User {
         if (!Objects.equals(this.getFirstName(), thatUser.getFirstName())) { return false; }
         if (!Objects.equals(this.getLastName(), thatUser.getLastName())) { return false; }
         if (!Objects.equals(this.getUserName(), thatUser.getUserName())) { return false; }
-        if (!Objects.equals(this.getUserPassword(), thatUser.getUserPassword())) { return false; }
         if (!Objects.equals(this.getUserUsergroupId(), thatUser.getUserUsergroupId())) { return false; }
         return true;
     }
@@ -140,7 +126,6 @@ public abstract class GeneratedUserImpl implements User {
         hash = 31 * hash + Objects.hashCode(getFirstName());
         hash = 31 * hash + Objects.hashCode(getLastName());
         hash = 31 * hash + Objects.hashCode(getUserName());
-        hash = 31 * hash + Objects.hashCode(getUserPassword());
         hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getUserUsergroupId()));
         return hash;
     }

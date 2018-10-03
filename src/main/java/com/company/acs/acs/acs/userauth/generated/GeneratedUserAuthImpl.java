@@ -1,7 +1,9 @@
 package com.company.acs.acs.acs.userauth.generated;
 
+import com.company.acs.acs.acs.user.User;
 import com.company.acs.acs.acs.userauth.UserAuth;
 import com.speedment.common.annotation.GeneratedCode;
+import com.speedment.runtime.core.manager.Manager;
 
 import java.util.Objects;
 import java.util.StringJoiner;
@@ -67,6 +69,11 @@ public abstract class GeneratedUserAuthImpl implements UserAuth {
     public UserAuth setSalt(String salt) {
         this.salt = salt;
         return this;
+    }
+    
+    @Override
+    public User findUsername(Manager<User> foreignManager) {
+        return foreignManager.stream().filter(User.USER_NAME.equal(getUsername())).findAny().orElse(null);
     }
     
     @Override

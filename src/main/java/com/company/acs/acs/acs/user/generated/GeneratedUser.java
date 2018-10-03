@@ -74,17 +74,6 @@ public interface GeneratedUser {
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
-     * using the {@link User#getUserPassword()} method.
-     */
-    StringField<User, String> USER_PASSWORD = StringField.create(
-        Identifier.USER_PASSWORD,
-        User::getUserPassword,
-        User::setUserPassword,
-        TypeMapper.identity(),
-        false
-    );
-    /**
-     * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getUserUsergroupId()} method.
      */
     ComparableForeignKeyField<User, Integer, Integer, UserGroup> USER_USERGROUP_ID = ComparableForeignKeyField.create(
@@ -127,14 +116,6 @@ public interface GeneratedUser {
      * @return the userName of this User
      */
     String getUserName();
-    
-    /**
-     * Returns the userPassword of this User. The userPassword field corresponds
-     * to the database column ACS.ACS.User.userPassword.
-     * 
-     * @return the userPassword of this User
-     */
-    String getUserPassword();
     
     /**
      * Returns the userUsergroupId of this User. The userUsergroupId field
@@ -181,15 +162,6 @@ public interface GeneratedUser {
     User setUserName(String userName);
     
     /**
-     * Sets the userPassword of this User. The userPassword field corresponds to
-     * the database column ACS.ACS.User.userPassword.
-     * 
-     * @param userPassword to set of this User
-     * @return             this User instance
-     */
-    User setUserPassword(String userPassword);
-    
-    /**
      * Sets the userUsergroupId of this User. The userUsergroupId field
      * corresponds to the database column ACS.ACS.User.user_usergroupId.
      * 
@@ -213,7 +185,6 @@ public interface GeneratedUser {
         FIRST_NAME        ("firstName"),
         LAST_NAME         ("LastName"),
         USER_NAME         ("userName"),
-        USER_PASSWORD     ("userPassword"),
         USER_USERGROUP_ID ("user_usergroupId");
         
         private final String columnId;

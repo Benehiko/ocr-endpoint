@@ -11,8 +11,6 @@ import com.company.acs.acs.acs.image.ImageManagerImpl;
 import com.company.acs.acs.acs.image.ImageSqlAdapter;
 import com.company.acs.acs.acs.location.LocationManagerImpl;
 import com.company.acs.acs.acs.location.LocationSqlAdapter;
-import com.company.acs.acs.acs.moderator.ModeratorManagerImpl;
-import com.company.acs.acs.acs.moderator.ModeratorSqlAdapter;
 import com.company.acs.acs.acs.numberplate.NumberplateManagerImpl;
 import com.company.acs.acs.acs.numberplate.NumberplateSqlAdapter;
 import com.company.acs.acs.acs.user.UserManagerImpl;
@@ -46,7 +44,6 @@ public abstract class GeneratedAcsApplicationBuilder extends AbstractApplication
         withManager(FleetVehicleManagerImpl.class);
         withManager(ImageManagerImpl.class);
         withManager(LocationManagerImpl.class);
-        withManager(ModeratorManagerImpl.class);
         withManager(NumberplateManagerImpl.class);
         withManager(UserManagerImpl.class);
         withManager(UserAuthManagerImpl.class);
@@ -56,7 +53,6 @@ public abstract class GeneratedAcsApplicationBuilder extends AbstractApplication
         withComponent(FleetVehicleSqlAdapter.class);
         withComponent(ImageSqlAdapter.class);
         withComponent(LocationSqlAdapter.class);
-        withComponent(ModeratorSqlAdapter.class);
         withComponent(NumberplateSqlAdapter.class);
         withComponent(UserSqlAdapter.class);
         withComponent(UserAuthSqlAdapter.class);

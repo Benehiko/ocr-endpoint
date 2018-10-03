@@ -37,8 +37,7 @@ public abstract class GeneratedUserSqlAdapter implements SqlAdapter<User> {
             .setFirstName(       resultSet.getString(2 + offset))
             .setLastName(        resultSet.getString(3 + offset))
             .setUserName(        resultSet.getString(4 + offset))
-            .setUserPassword(    resultSet.getString(5 + offset))
-            .setUserUsergroupId( getInt(resultSet, 6 + offset))
+            .setUserUsergroupId( getInt(resultSet, 5 + offset))
             ;
     }
     
