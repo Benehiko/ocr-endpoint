@@ -4,6 +4,8 @@ import com.OcrHelper;
 import com.company.acs.AcsApplication;
 import com.company.acs.acs.acs.device.Device;
 import com.company.acs.acs.acs.device.DeviceManager;
+import com.company.acs.acs.acs.fleetvehicle.FleetVehicle;
+import com.company.acs.acs.acs.fleetvehicle.FleetVehicleManager;
 import com.company.acs.acs.acs.image.Image;
 import com.company.acs.acs.acs.image.ImageImpl;
 import com.company.acs.acs.acs.image.ImageManager;
@@ -20,8 +22,9 @@ import java.io.IOException;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
@@ -35,11 +38,13 @@ public class OcrController {
     private final DeviceManager deviceManager;
     private final ImageManager imageManager;
     private final NumberplateManager numberplateManager;
+    private final FleetVehicleManager fleetVehicleManager;
 
     public OcrController(AcsApplication app) {
         deviceManager = app.getOrThrow(DeviceManager.class);
         imageManager = app.getOrThrow(ImageManager.class);
         numberplateManager = app.getOrThrow(NumberplateManager.class);
+        fleetVehicleManager = app.getOrThrow(FleetVehicleManager.class);
     }
 
     @PostMapping(path = "/pic/pi", produces = "application/json")
@@ -57,9 +62,19 @@ public class OcrController {
 
     @PostMapping(path = "/pic/mobile", produces = "application/json")
     @ResponseBody
-    List<String> getMobileOcr(@RequestParam("timestamp") String timestamp, @RequestParam("mac") String mac, @RequestParam("images") List<MultipartFile> images) throws ExecutionException, InterruptedException {
+    Map<String, Boolean> getMobileOcr(@RequestParam("timestamp") String timestamp, @RequestParam("mac") String mac, @RequestParam("images") List<MultipartFile> images) throws ExecutionException, InterruptedException {
         List<byte[]> imgs = getBytes(images);
-        return backdrop(imgs, mac, timestamp);
+        List<String> results = backdrop(imgs, mac, timestamp);
+        Map<String, Boolean> out = new HashMap<>();
+        results.forEach(res -> {
+            Optional<FleetVehicle> fleetVehicle = fleetVehicleManager.stream().filter(FleetVehicle.NUMBERPLATE.equalIgnoreCase(res)).findFirst();
+            boolean isFleet = false;
+            if (fleetVehicle.isPresent()){
+                isFleet = true;
+            }
+            out.put(res, isFleet);
+        });
+        return out;
     }
 
     private CompletableFuture<OcrHelper> doOCR(byte[] bytes) {
@@ -98,11 +113,14 @@ public class OcrController {
                     Blob blob = null;
                     try {
                         blob = new javax.sql.rowset.serial.SerialBlob(ocr.getBytes());
-                        Image image = new ImageImpl().setImage(blob).setImageDevice(device.getDeviceId()).setTimeStamp(Timestamp.valueOf(timestamp));
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                        Date parsedDate = dateFormat.parse(timestamp);
+                        Timestamp t = new java.sql.Timestamp(parsedDate.getTime());
+                        Image image = new ImageImpl().setImage(blob).setImageDevice(device.getDeviceId()).setTimeStamp(t);
                         imageManager.persist(image);
                         Numberplate numberplate = new NumberplateImpl().setNumberplateImage(image.getImageId()).setNumberplatestring(ocr.getResult());
                         numberplateManager.persist(numberplate);
-                    } catch (SQLException | SpeedmentException e) {
+                    } catch (SQLException | SpeedmentException | ParseException e) {
                         e.printStackTrace();
                     }
                 }

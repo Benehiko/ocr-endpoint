@@ -6,16 +6,13 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.ComparableField;
-import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
+import com.speedment.runtime.field.IntForeignKeyField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
 
 import java.sql.Timestamp;
-import java.util.Optional;
-import java.util.OptionalInt;
 
 /**
  * The generated base for the {@link
@@ -67,12 +64,12 @@ public interface GeneratedNumberplate {
      * This Field corresponds to the {@link Numberplate} field that can be
      * obtained using the {@link Numberplate#getNumberplateImage()} method.
      */
-    ComparableForeignKeyField<Numberplate, Integer, Integer, Image> NUMBERPLATE_IMAGE = ComparableForeignKeyField.create(
+    IntForeignKeyField<Numberplate, Integer, Image> NUMBERPLATE_IMAGE = IntForeignKeyField.create(
         Identifier.NUMBERPLATE_IMAGE,
-        o -> OptionalUtil.unwrap(o.getNumberplateImage()),
+        Numberplate::getNumberplateImage,
         Numberplate::setNumberplateImage,
         Image.IMAGE_ID,
-        TypeMapper.identity(),
+        TypeMapper.primitive(),
         false
     );
     
@@ -108,7 +105,7 @@ public interface GeneratedNumberplate {
      * 
      * @return the numberplateImage of this Numberplate
      */
-    OptionalInt getNumberplateImage();
+    int getNumberplateImage();
     
     /**
      * Sets the numberplateId of this Numberplate. The numberplateId field
@@ -145,7 +142,7 @@ public interface GeneratedNumberplate {
      * @param numberplateImage to set of this Numberplate
      * @return                 this Numberplate instance
      */
-    Numberplate setNumberplateImage(Integer numberplateImage);
+    Numberplate setNumberplateImage(int numberplateImage);
     
     /**
      * Queries the specified manager for the referenced Image. If no such Image
@@ -154,7 +151,7 @@ public interface GeneratedNumberplate {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Optional<Image> findNumberplateImage(Manager<Image> foreignManager);
+    Image findNumberplateImage(Manager<Image> foreignManager);
     
     enum Identifier implements ColumnIdentifier<Numberplate> {
         

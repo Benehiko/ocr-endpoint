@@ -25,6 +25,7 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Optional;
 import java.util.OptionalInt;
 
@@ -49,13 +50,14 @@ public class AuthController {
     boolean registerMobile(@RequestBody DeviceAuth deviceAuth, Device device) throws UnsupportedEncodingException {
         if (deviceAuth != null) {
             byte[] salt = getSalt();
-            byte[] hash = genHash(deviceAuth.getPassword().toCharArray(), salt);
+            char[] password = (deviceAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
+            byte[] hash = genHash(password, salt);
             OptionalInt userID = device.getDeviceUser();
             if (userID.isPresent()) {
                 Optional<User> user = userManager.stream().filter(User.USER_ID.equal(userID.getAsInt())).findFirst();
                 if (user.isPresent()) {
-                    String h = new String(hash, "ISO-8859-1");
-                    UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(new String(salt, "ISO-8859-1"));
+                    String h = getStringFromBytes(hash);
+                    UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(getStringFromBytes(salt));
                     try {
                         userAuth2Manager.persist(userAuth2);
                         return true;
@@ -73,12 +75,13 @@ public class AuthController {
     boolean registerWebsite(@RequestBody WebsiteAuth websiteAuth) throws UnsupportedEncodingException {
         if (websiteAuth != null) {
             String username = websiteAuth.getUsername();
-            Optional<User> user = userManager.stream().filter(User.USER_NAME.equalIgnoreCase(username)).findFirst();
+            Optional<User> user = userManager.stream().filter(User.USERNAME.equalIgnoreCase(username)).findFirst();
             if (user.isPresent()) {
                 byte[] salt = getSalt();
-                byte[] hash = genHash(websiteAuth.getPassword().toCharArray(), salt);
-                String h = new String(hash, "ISO-8859-1");
-                UserAuth userAuth = new UserAuthImpl().setHash(h).setUsername(user.get().getUserName()).setSalt(new String(salt, "ISO-8859-1"));
+                char[] password = (websiteAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
+                byte[] hash = genHash(password, salt);
+                String h = getStringFromBytes(hash);
+                UserAuth userAuth = new UserAuthImpl().setHash(h).setUsername(user.get().getUsername()).setSalt(getStringFromBytes(salt));
                 try {
                     userAuthManager.persist(userAuth);
                     return true;
@@ -105,9 +108,9 @@ public class AuthController {
                     if (tmpUser != null) {
                         UserAuth2 userAuth2 = userAuth2Manager.stream().filter(UserAuth2.AUTH_USER_ID.equal(tmpUser.getUserId())).findFirst().orElse(null);
                         if (userAuth2 != null) {
-                            byte[] hash = userAuth2.getHash().getBytes("ISO-8859-1");
-                            byte[] salt = userAuth2.getHash().getBytes("ISO-8859-1");
-                            char[] pass = (deviceAuth.getPassword() + new String(salt, "ISO-8859-1")).toCharArray();
+                            byte[] hash = getBytesFromString(userAuth2.getHash());
+                            byte[] salt = getBytesFromString(userAuth2.getHash());
+                            char[] pass = (deviceAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
                             return checkPassword(pass, hash, salt);
                         }
                     }
@@ -121,11 +124,11 @@ public class AuthController {
     @PostMapping(path = "login/website", consumes = "application/json", produces = "application/json")
     @ResponseBody
     boolean authWebsite(@RequestBody WebsiteAuth websiteAuth) {
-        Optional<UserAuth> auth = userAuthManager.stream().filter(UserAuth.USERNAME.equal(websiteAuth.getUsername())).findFirst();
+        Optional<UserAuth> auth = userAuthManager.stream().filter(UserAuth.USERNAME.equalIgnoreCase(websiteAuth.getUsername())).findFirst();
         if (auth.isPresent()) {
-            byte[] hash = auth.get().getHash().getBytes();
-            byte[] salt = auth.get().getHash().getBytes();
-            char[] pass = (websiteAuth.getPassword() + Arrays.toString(salt)).toCharArray();
+            byte[] hash = getBytesFromString(auth.get().getHash());
+            byte[] salt = getBytesFromString(auth.get().getSalt());
+            char[] pass = (websiteAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
             return checkPassword(pass, hash, salt);
         }
         return false;
@@ -136,8 +139,7 @@ public class AuthController {
             SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
             PBEKeySpec spec = new PBEKeySpec(password, salt, 1, 256);
             SecretKey key = skf.generateSecret(spec);
-            byte[] res = key.getEncoded();
-            return res;
+            return key.getEncoded();
 
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             System.out.println(e);
@@ -153,5 +155,13 @@ public class AuthController {
     private boolean checkPassword(char[] password, byte[] hash, byte[] salt) {
         byte[] h = genHash(password, salt);
         return Arrays.equals(h, hash);
+    }
+
+    private String getStringFromBytes(byte[] b){
+        return Base64.getEncoder().encodeToString(b);
+    }
+
+    private byte[] getBytesFromString(String s){
+        return Base64.getDecoder().decode(s);
     }
 }

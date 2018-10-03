@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.speedment.common.injector.State.RESOLVED;
-import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link com.company.acs.acs.acs.user.User}
@@ -36,8 +35,8 @@ public abstract class GeneratedUserSqlAdapter implements SqlAdapter<User> {
             .setUserId(          resultSet.getInt(1 + offset))
             .setFirstName(       resultSet.getString(2 + offset))
             .setLastName(        resultSet.getString(3 + offset))
-            .setUserName(        resultSet.getString(4 + offset))
-            .setUserUsergroupId( getInt(resultSet, 5 + offset))
+            .setUsername(        resultSet.getString(4 + offset))
+            .setUserUsergroupId( resultSet.getInt(5 + offset))
             ;
     }
     

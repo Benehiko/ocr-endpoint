@@ -6,14 +6,10 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
-import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
+import com.speedment.runtime.field.IntForeignKeyField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
-
-import java.util.Optional;
-import java.util.OptionalInt;
 
 /**
  * The generated base for the {@link
@@ -43,12 +39,12 @@ public interface GeneratedUserAuth2 {
      * This Field corresponds to the {@link UserAuth2} field that can be
      * obtained using the {@link UserAuth2#getAuthUserId()} method.
      */
-    ComparableForeignKeyField<UserAuth2, Integer, Integer, User> AUTH_USER_ID = ComparableForeignKeyField.create(
+    IntForeignKeyField<UserAuth2, Integer, User> AUTH_USER_ID = IntForeignKeyField.create(
         Identifier.AUTH_USER_ID,
-        o -> OptionalUtil.unwrap(o.getAuthUserId()),
+        UserAuth2::getAuthUserId,
         UserAuth2::setAuthUserId,
         User.USER_ID,
-        TypeMapper.identity(),
+        TypeMapper.primitive(),
         false
     );
     /**
@@ -88,7 +84,7 @@ public interface GeneratedUserAuth2 {
      * 
      * @return the authUserId of this UserAuth2
      */
-    OptionalInt getAuthUserId();
+    int getAuthUserId();
     
     /**
      * Returns the hash of this UserAuth2. The hash field corresponds to the
@@ -122,7 +118,7 @@ public interface GeneratedUserAuth2 {
      * @param authUserId to set of this UserAuth2
      * @return           this UserAuth2 instance
      */
-    UserAuth2 setAuthUserId(Integer authUserId);
+    UserAuth2 setAuthUserId(int authUserId);
     
     /**
      * Sets the hash of this UserAuth2. The hash field corresponds to the
@@ -149,7 +145,7 @@ public interface GeneratedUserAuth2 {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Optional<User> findAuthUserId(Manager<User> foreignManager);
+    User findAuthUserId(Manager<User> foreignManager);
     
     enum Identifier implements ColumnIdentifier<UserAuth2> {
         

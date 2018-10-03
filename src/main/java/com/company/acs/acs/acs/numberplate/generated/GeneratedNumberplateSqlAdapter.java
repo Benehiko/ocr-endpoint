@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.speedment.common.injector.State.RESOLVED;
-import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link
@@ -36,7 +35,7 @@ public abstract class GeneratedNumberplateSqlAdapter implements SqlAdapter<Numbe
             .setNumberplateId(     resultSet.getInt(1 + offset))
             .setNumberplatestring( resultSet.getString(2 + offset))
             .setTime(              resultSet.getTimestamp(3 + offset))
-            .setNumberplateImage(  getInt(resultSet, 4 + offset))
+            .setNumberplateImage(  resultSet.getInt(4 + offset))
             ;
     }
     

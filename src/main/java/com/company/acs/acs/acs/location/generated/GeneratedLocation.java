@@ -4,12 +4,9 @@ import com.company.acs.acs.acs.location.Location;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
-import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
-
-import java.util.Optional;
 
 /**
  * The generated base for the {@link
@@ -37,23 +34,23 @@ public interface GeneratedLocation {
     );
     /**
      * This Field corresponds to the {@link Location} field that can be obtained
-     * using the {@link Location#getLName()} method.
+     * using the {@link Location#getName()} method.
      */
-    StringField<Location, String> L_NAME = StringField.create(
-        Identifier.L_NAME,
-        o -> OptionalUtil.unwrap(o.getLName()),
-        Location::setLName,
+    StringField<Location, String> NAME = StringField.create(
+        Identifier.NAME,
+        Location::getName,
+        Location::setName,
         TypeMapper.identity(),
         false
     );
     /**
      * This Field corresponds to the {@link Location} field that can be obtained
-     * using the {@link Location#getLType()} method.
+     * using the {@link Location#getType()} method.
      */
-    StringField<Location, String> L_TYPE = StringField.create(
-        Identifier.L_TYPE,
-        o -> OptionalUtil.unwrap(o.getLType()),
-        Location::setLType,
+    StringField<Location, String> TYPE = StringField.create(
+        Identifier.TYPE,
+        Location::getType,
+        Location::setType,
         TypeMapper.identity(),
         false
     );
@@ -78,20 +75,20 @@ public interface GeneratedLocation {
     int getLocationId();
     
     /**
-     * Returns the lName of this Location. The lName field corresponds to the
-     * database column ACS.ACS.Location.lName.
+     * Returns the name of this Location. The name field corresponds to the
+     * database column ACS.ACS.Location.name.
      * 
-     * @return the lName of this Location
+     * @return the name of this Location
      */
-    Optional<String> getLName();
+    String getName();
     
     /**
-     * Returns the lType of this Location. The lType field corresponds to the
-     * database column ACS.ACS.Location.lType.
+     * Returns the type of this Location. The type field corresponds to the
+     * database column ACS.ACS.Location.type.
      * 
-     * @return the lType of this Location
+     * @return the type of this Location
      */
-    Optional<String> getLType();
+    String getType();
     
     /**
      * Returns the devicesGuardGuardId of this Location. The devicesGuardGuardId
@@ -112,22 +109,22 @@ public interface GeneratedLocation {
     Location setLocationId(int locationId);
     
     /**
-     * Sets the lName of this Location. The lName field corresponds to the
-     * database column ACS.ACS.Location.lName.
+     * Sets the name of this Location. The name field corresponds to the
+     * database column ACS.ACS.Location.name.
      * 
-     * @param lName to set of this Location
-     * @return      this Location instance
+     * @param name to set of this Location
+     * @return     this Location instance
      */
-    Location setLName(String lName);
+    Location setName(String name);
     
     /**
-     * Sets the lType of this Location. The lType field corresponds to the
-     * database column ACS.ACS.Location.lType.
+     * Sets the type of this Location. The type field corresponds to the
+     * database column ACS.ACS.Location.type.
      * 
-     * @param lType to set of this Location
-     * @return      this Location instance
+     * @param type to set of this Location
+     * @return     this Location instance
      */
-    Location setLType(String lType);
+    Location setType(String type);
     
     /**
      * Sets the devicesGuardGuardId of this Location. The devicesGuardGuardId
@@ -142,8 +139,8 @@ public interface GeneratedLocation {
     enum Identifier implements ColumnIdentifier<Location> {
         
         LOCATION_ID            ("locationId"),
-        L_NAME                 ("lName"),
-        L_TYPE                 ("lType"),
+        NAME                   ("name"),
+        TYPE                   ("type"),
         DEVICES_GUARD_GUARD_ID ("Devices_Guard_guardId");
         
         private final String columnId;

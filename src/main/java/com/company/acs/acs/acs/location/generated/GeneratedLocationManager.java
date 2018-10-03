@@ -26,8 +26,8 @@ public interface GeneratedLocationManager extends Manager<Location> {
     TableIdentifier<Location> IDENTIFIER = TableIdentifier.of("ACS", "ACS", "Location");
     List<Field<Location>> FIELDS = unmodifiableList(asList(
         Location.LOCATION_ID,
-        Location.L_NAME,
-        Location.L_TYPE,
+        Location.NAME,
+        Location.TYPE,
         Location.DEVICES_GUARD_GUARD_ID
     ));
     

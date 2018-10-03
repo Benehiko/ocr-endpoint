@@ -6,14 +6,10 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
-import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
+import com.speedment.runtime.field.IntForeignKeyField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
-
-import java.util.Optional;
-import java.util.OptionalInt;
 
 /**
  * The generated base for the {@link
@@ -63,12 +59,12 @@ public interface GeneratedUser {
     );
     /**
      * This Field corresponds to the {@link User} field that can be obtained
-     * using the {@link User#getUserName()} method.
+     * using the {@link User#getUsername()} method.
      */
-    StringField<User, String> USER_NAME = StringField.create(
-        Identifier.USER_NAME,
-        User::getUserName,
-        User::setUserName,
+    StringField<User, String> USERNAME = StringField.create(
+        Identifier.USERNAME,
+        User::getUsername,
+        User::setUsername,
         TypeMapper.identity(),
         true
     );
@@ -76,12 +72,12 @@ public interface GeneratedUser {
      * This Field corresponds to the {@link User} field that can be obtained
      * using the {@link User#getUserUsergroupId()} method.
      */
-    ComparableForeignKeyField<User, Integer, Integer, UserGroup> USER_USERGROUP_ID = ComparableForeignKeyField.create(
+    IntForeignKeyField<User, Integer, UserGroup> USER_USERGROUP_ID = IntForeignKeyField.create(
         Identifier.USER_USERGROUP_ID,
-        o -> OptionalUtil.unwrap(o.getUserUsergroupId()),
+        User::getUserUsergroupId,
         User::setUserUsergroupId,
         UserGroup.USERGROUP_ID,
-        TypeMapper.identity(),
+        TypeMapper.primitive(),
         false
     );
     
@@ -103,19 +99,19 @@ public interface GeneratedUser {
     
     /**
      * Returns the lastName of this User. The lastName field corresponds to the
-     * database column ACS.ACS.User.LastName.
+     * database column ACS.ACS.User.lastName.
      * 
      * @return the lastName of this User
      */
     String getLastName();
     
     /**
-     * Returns the userName of this User. The userName field corresponds to the
-     * database column ACS.ACS.User.userName.
+     * Returns the username of this User. The username field corresponds to the
+     * database column ACS.ACS.User.username.
      * 
-     * @return the userName of this User
+     * @return the username of this User
      */
-    String getUserName();
+    String getUsername();
     
     /**
      * Returns the userUsergroupId of this User. The userUsergroupId field
@@ -123,7 +119,7 @@ public interface GeneratedUser {
      * 
      * @return the userUsergroupId of this User
      */
-    OptionalInt getUserUsergroupId();
+    int getUserUsergroupId();
     
     /**
      * Sets the userId of this User. The userId field corresponds to the
@@ -145,7 +141,7 @@ public interface GeneratedUser {
     
     /**
      * Sets the lastName of this User. The lastName field corresponds to the
-     * database column ACS.ACS.User.LastName.
+     * database column ACS.ACS.User.lastName.
      * 
      * @param lastName to set of this User
      * @return         this User instance
@@ -153,13 +149,13 @@ public interface GeneratedUser {
     User setLastName(String lastName);
     
     /**
-     * Sets the userName of this User. The userName field corresponds to the
-     * database column ACS.ACS.User.userName.
+     * Sets the username of this User. The username field corresponds to the
+     * database column ACS.ACS.User.username.
      * 
-     * @param userName to set of this User
+     * @param username to set of this User
      * @return         this User instance
      */
-    User setUserName(String userName);
+    User setUsername(String username);
     
     /**
      * Sets the userUsergroupId of this User. The userUsergroupId field
@@ -168,7 +164,7 @@ public interface GeneratedUser {
      * @param userUsergroupId to set of this User
      * @return                this User instance
      */
-    User setUserUsergroupId(Integer userUsergroupId);
+    User setUserUsergroupId(int userUsergroupId);
     
     /**
      * Queries the specified manager for the referenced UserGroup. If no such
@@ -177,14 +173,14 @@ public interface GeneratedUser {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Optional<UserGroup> findUserUsergroupId(Manager<UserGroup> foreignManager);
+    UserGroup findUserUsergroupId(Manager<UserGroup> foreignManager);
     
     enum Identifier implements ColumnIdentifier<User> {
         
         USER_ID           ("userId"),
         FIRST_NAME        ("firstName"),
-        LAST_NAME         ("LastName"),
-        USER_NAME         ("userName"),
+        LAST_NAME         ("lastName"),
+        USERNAME          ("username"),
         USER_USERGROUP_ID ("user_usergroupId");
         
         private final String columnId;

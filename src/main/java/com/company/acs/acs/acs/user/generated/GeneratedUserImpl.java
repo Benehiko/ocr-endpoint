@@ -4,11 +4,8 @@ import com.company.acs.acs.acs.user.User;
 import com.company.acs.acs.acs.usergroup.UserGroup;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
 
 import java.util.Objects;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.StringJoiner;
 
 /**
@@ -26,8 +23,8 @@ public abstract class GeneratedUserImpl implements User {
     private int userId;
     private String firstName;
     private String lastName;
-    private String userName;
-    private Integer userUsergroupId;
+    private String username;
+    private int userUsergroupId;
     
     protected GeneratedUserImpl() {}
     
@@ -47,13 +44,13 @@ public abstract class GeneratedUserImpl implements User {
     }
     
     @Override
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
     
     @Override
-    public OptionalInt getUserUsergroupId() {
-        return OptionalUtil.ofNullable(userUsergroupId);
+    public int getUserUsergroupId() {
+        return userUsergroupId;
     }
     
     @Override
@@ -75,24 +72,20 @@ public abstract class GeneratedUserImpl implements User {
     }
     
     @Override
-    public User setUserName(String userName) {
-        this.userName = userName;
+    public User setUsername(String username) {
+        this.username = username;
         return this;
     }
     
     @Override
-    public User setUserUsergroupId(Integer userUsergroupId) {
+    public User setUserUsergroupId(int userUsergroupId) {
         this.userUsergroupId = userUsergroupId;
         return this;
     }
     
     @Override
-    public Optional<UserGroup> findUserUsergroupId(Manager<UserGroup> foreignManager) {
-        if (getUserUsergroupId().isPresent()) {
-            return foreignManager.stream().filter(UserGroup.USERGROUP_ID.equal(getUserUsergroupId().getAsInt())).findAny();
-        } else {
-            return Optional.empty();
-        }
+    public UserGroup findUserUsergroupId(Manager<UserGroup> foreignManager) {
+        return foreignManager.stream().filter(UserGroup.USERGROUP_ID.equal(getUserUsergroupId())).findAny().orElse(null);
     }
     
     @Override
@@ -101,8 +94,8 @@ public abstract class GeneratedUserImpl implements User {
         sj.add("userId = "          + Objects.toString(getUserId()));
         sj.add("firstName = "       + Objects.toString(getFirstName()));
         sj.add("lastName = "        + Objects.toString(getLastName()));
-        sj.add("userName = "        + Objects.toString(getUserName()));
-        sj.add("userUsergroupId = " + Objects.toString(OptionalUtil.unwrap(getUserUsergroupId())));
+        sj.add("username = "        + Objects.toString(getUsername()));
+        sj.add("userUsergroupId = " + Objects.toString(getUserUsergroupId()));
         return "UserImpl " + sj.toString();
     }
     
@@ -114,8 +107,8 @@ public abstract class GeneratedUserImpl implements User {
         if (this.getUserId() != thatUser.getUserId()) { return false; }
         if (!Objects.equals(this.getFirstName(), thatUser.getFirstName())) { return false; }
         if (!Objects.equals(this.getLastName(), thatUser.getLastName())) { return false; }
-        if (!Objects.equals(this.getUserName(), thatUser.getUserName())) { return false; }
-        if (!Objects.equals(this.getUserUsergroupId(), thatUser.getUserUsergroupId())) { return false; }
+        if (!Objects.equals(this.getUsername(), thatUser.getUsername())) { return false; }
+        if (this.getUserUsergroupId() != thatUser.getUserUsergroupId()) { return false; }
         return true;
     }
     
@@ -125,8 +118,8 @@ public abstract class GeneratedUserImpl implements User {
         hash = 31 * hash + Integer.hashCode(getUserId());
         hash = 31 * hash + Objects.hashCode(getFirstName());
         hash = 31 * hash + Objects.hashCode(getLastName());
-        hash = 31 * hash + Objects.hashCode(getUserName());
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getUserUsergroupId()));
+        hash = 31 * hash + Objects.hashCode(getUsername());
+        hash = 31 * hash + Integer.hashCode(getUserUsergroupId());
         return hash;
     }
 }

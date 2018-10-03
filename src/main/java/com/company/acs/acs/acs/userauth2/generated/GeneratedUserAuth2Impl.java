@@ -4,11 +4,8 @@ import com.company.acs.acs.acs.user.User;
 import com.company.acs.acs.acs.userauth2.UserAuth2;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
 
 import java.util.Objects;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.StringJoiner;
 
 /**
@@ -24,7 +21,7 @@ import java.util.StringJoiner;
 public abstract class GeneratedUserAuth2Impl implements UserAuth2 {
     
     private int authId;
-    private Integer authUserId;
+    private int authUserId;
     private String hash;
     private String salt;
     
@@ -36,8 +33,8 @@ public abstract class GeneratedUserAuth2Impl implements UserAuth2 {
     }
     
     @Override
-    public OptionalInt getAuthUserId() {
-        return OptionalUtil.ofNullable(authUserId);
+    public int getAuthUserId() {
+        return authUserId;
     }
     
     @Override
@@ -57,7 +54,7 @@ public abstract class GeneratedUserAuth2Impl implements UserAuth2 {
     }
     
     @Override
-    public UserAuth2 setAuthUserId(Integer authUserId) {
+    public UserAuth2 setAuthUserId(int authUserId) {
         this.authUserId = authUserId;
         return this;
     }
@@ -75,19 +72,15 @@ public abstract class GeneratedUserAuth2Impl implements UserAuth2 {
     }
     
     @Override
-    public Optional<User> findAuthUserId(Manager<User> foreignManager) {
-        if (getAuthUserId().isPresent()) {
-            return foreignManager.stream().filter(User.USER_ID.equal(getAuthUserId().getAsInt())).findAny();
-        } else {
-            return Optional.empty();
-        }
+    public User findAuthUserId(Manager<User> foreignManager) {
+        return foreignManager.stream().filter(User.USER_ID.equal(getAuthUserId())).findAny().orElse(null);
     }
     
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("authId = "     + Objects.toString(getAuthId()));
-        sj.add("authUserId = " + Objects.toString(OptionalUtil.unwrap(getAuthUserId())));
+        sj.add("authUserId = " + Objects.toString(getAuthUserId()));
         sj.add("hash = "       + Objects.toString(getHash()));
         sj.add("salt = "       + Objects.toString(getSalt()));
         return "UserAuth2Impl " + sj.toString();
@@ -99,7 +92,7 @@ public abstract class GeneratedUserAuth2Impl implements UserAuth2 {
         if (!(that instanceof UserAuth2)) { return false; }
         final UserAuth2 thatUserAuth2 = (UserAuth2)that;
         if (this.getAuthId() != thatUserAuth2.getAuthId()) { return false; }
-        if (!Objects.equals(this.getAuthUserId(), thatUserAuth2.getAuthUserId())) { return false; }
+        if (this.getAuthUserId() != thatUserAuth2.getAuthUserId()) { return false; }
         if (!Objects.equals(this.getHash(), thatUserAuth2.getHash())) { return false; }
         if (!Objects.equals(this.getSalt(), thatUserAuth2.getSalt())) { return false; }
         return true;
@@ -109,7 +102,7 @@ public abstract class GeneratedUserAuth2Impl implements UserAuth2 {
     public int hashCode() {
         int hash = 7;
         hash = 31 * hash + Integer.hashCode(getAuthId());
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getAuthUserId()));
+        hash = 31 * hash + Integer.hashCode(getAuthUserId());
         hash = 31 * hash + Objects.hashCode(getHash());
         hash = 31 * hash + Objects.hashCode(getSalt());
         return hash;

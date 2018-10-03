@@ -33,8 +33,8 @@ public abstract class GeneratedLocationSqlAdapter implements SqlAdapter<Location
     protected Location apply(ResultSet resultSet, int offset) throws SQLException {
         return createEntity()
             .setLocationId(          resultSet.getInt(1 + offset))
-            .setLName(               resultSet.getString(2 + offset))
-            .setLType(               resultSet.getString(3 + offset))
+            .setName(                resultSet.getString(2 + offset))
+            .setType(                resultSet.getString(3 + offset))
             .setDevicesGuardGuardId( resultSet.getInt(4 + offset))
             ;
     }

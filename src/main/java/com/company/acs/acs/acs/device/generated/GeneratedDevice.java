@@ -8,9 +8,8 @@ import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
 import com.speedment.runtime.core.util.OptionalUtil;
-import com.speedment.runtime.field.ComparableField;
 import com.speedment.runtime.field.ComparableForeignKeyField;
-import com.speedment.runtime.field.IntForeignKeyField;
+import com.speedment.runtime.field.IntField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
 
@@ -34,11 +33,10 @@ public interface GeneratedDevice {
      * This Field corresponds to the {@link Device} field that can be obtained
      * using the {@link Device#getDeviceId()} method.
      */
-    IntForeignKeyField<Device, Integer, Location> DEVICE_ID = IntForeignKeyField.create(
+    IntField<Device, Integer> DEVICE_ID = IntField.create(
         Identifier.DEVICE_ID,
         Device::getDeviceId,
         Device::setDeviceId,
-        Location.LOCATION_ID,
         TypeMapper.primitive(),
         true
     );
@@ -68,10 +66,11 @@ public interface GeneratedDevice {
      * This Field corresponds to the {@link Device} field that can be obtained
      * using the {@link Device#getDeviceLocation()} method.
      */
-    ComparableField<Device, Integer, Integer> DEVICE_LOCATION = ComparableField.create(
+    ComparableForeignKeyField<Device, Integer, Integer, Location> DEVICE_LOCATION = ComparableForeignKeyField.create(
         Identifier.DEVICE_LOCATION,
         o -> OptionalUtil.unwrap(o.getDeviceLocation()),
         Device::setDeviceLocation,
+        Location.LOCATION_ID,
         TypeMapper.identity(),
         false
     );
@@ -180,7 +179,7 @@ public interface GeneratedDevice {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Location findDeviceId(Manager<Location> foreignManager);
+    Optional<Location> findDeviceLocation(Manager<Location> foreignManager);
     
     /**
      * Queries the specified manager for the referenced User. If no such User

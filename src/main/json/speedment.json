@@ -3,22 +3,19 @@
     "speedmentVersion" : "Speedment:3.1.6",
     "nameProtected" : false,
     "expanded" : true,
-    "appId" : "e0f4d19e-ac09-44ad-a010-e0bff5a0f75c",
+    "appId" : "dc966b38-70f9-48df-a8c6-bcac90c14ddb",
     "companyName" : "company",
     "name" : "ACS",
     "packageLocation" : "src/main/java/",
     "id" : "ACS",
     "dbmses" : [
       {
-        "nameProtected" : true,
         "expanded" : true,
         "port" : 3306,
         "schemas" : [
           {
-            "nameProtected" : true,
             "tables" : [
               {
-                "nameProtected" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -27,9 +24,9 @@
                         "foreignDatabaseName" : "ACS",
                         "foreignSchemaName" : "ACS",
                         "expanded" : true,
-                        "name" : "deviceId",
+                        "name" : "device_location",
                         "foreignColumnName" : "locationId",
-                        "id" : "deviceId",
+                        "id" : "device_location",
                         "foreignTableName" : "Location",
                         "ordinalPosition" : 1
                       }
@@ -57,7 +54,7 @@
                     "enabled" : true
                   }
                 ],
-                "expanded" : false,
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
@@ -114,6 +111,22 @@
                       }
                     ],
                     "id" : "PRIMARY",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : false,
+                    "name" : "Device_Location_locationId_fk",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "device_location",
+                        "id" : "device_location",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "Device_Location_locationId_fk",
                     "enabled" : true
                   },
                   {
@@ -207,14 +220,13 @@
                     "enabled" : true
                   }
                 ],
-                "expanded" : false,
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "vehicleId",
                     "id" : "vehicleId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
@@ -263,8 +275,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "FleetVehicle_User_userId_fk",
-                    "enabled" : true
+                    "id" : "FleetVehicle_User_userId_fk"
                   }
                 ],
                 "isView" : false,
@@ -311,139 +322,6 @@
                         "foreignDatabaseName" : "ACS",
                         "foreignSchemaName" : "ACS",
                         "expanded" : true,
-                        "name" : "guard_device",
-                        "foreignColumnName" : "deviceId",
-                        "id" : "guard_device",
-                        "foreignTableName" : "Device",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "name" : "Guard_Device_deviceId_fk",
-                    "id" : "Guard_Device_deviceId_fk",
-                    "enabled" : true
-                  }
-                ],
-                "expanded" : false,
-                "primaryKeyColumns" : [
-                  {
-                    "expanded" : true,
-                    "name" : "guardId",
-                    "id" : "guardId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
-                  }
-                ],
-                "indexes" : [
-                  {
-                    "expanded" : false,
-                    "unique" : true,
-                    "name" : "Guard_Id_UNIQUE",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "guardId",
-                        "id" : "guardId",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "Guard_Id_UNIQUE",
-                    "enabled" : true
-                  },
-                  {
-                    "expanded" : false,
-                    "unique" : true,
-                    "name" : "Guard_userId_uindex",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "userId",
-                        "id" : "userId",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "Guard_userId_uindex",
-                    "enabled" : true
-                  },
-                  {
-                    "expanded" : false,
-                    "unique" : true,
-                    "name" : "PRIMARY",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "guardId",
-                        "id" : "guardId",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
-                  },
-                  {
-                    "expanded" : false,
-                    "unique" : false,
-                    "name" : "Guard_Device_deviceId_fk",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "guard_device",
-                        "id" : "guard_device",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "Guard_Device_deviceId_fk",
-                    "enabled" : true
-                  }
-                ],
-                "isView" : false,
-                "columns" : [
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
-                    "expanded" : true,
-                    "nullable" : false,
-                    "name" : "guardId",
-                    "id" : "guardId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
-                    "expanded" : true,
-                    "nullable" : false,
-                    "name" : "userId",
-                    "id" : "userId",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "expanded" : true,
-                    "nullable" : true,
-                    "name" : "guard_device",
-                    "id" : "guard_device",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
-                  }
-                ],
-                "name" : "Guard",
-                "id" : "Guard",
-                "enabled" : true
-              },
-              {
-                "foreignKeys" : [
-                  {
-                    "expanded" : false,
-                    "foreignKeyColumns" : [
-                      {
-                        "foreignDatabaseName" : "ACS",
-                        "foreignSchemaName" : "ACS",
-                        "expanded" : true,
                         "name" : "image_device",
                         "foreignColumnName" : "deviceId",
                         "id" : "image_device",
@@ -452,18 +330,16 @@
                       }
                     ],
                     "name" : "Images_Device_deviceId_fk",
-                    "id" : "Images_Device_deviceId_fk",
-                    "enabled" : true
+                    "id" : "Images_Device_deviceId_fk"
                   }
                 ],
-                "expanded" : false,
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "imageId",
                     "id" : "imageId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
@@ -480,8 +356,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "imageId_UNIQUE",
-                    "enabled" : true
+                    "id" : "imageId_UNIQUE"
                   },
                   {
                     "expanded" : false,
@@ -496,8 +371,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
+                    "id" : "PRIMARY"
                   },
                   {
                     "expanded" : false,
@@ -512,8 +386,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "Images_Device_deviceId_fk",
-                    "enabled" : true
+                    "id" : "Images_Device_deviceId_fk"
                   }
                 ],
                 "isView" : false,
@@ -525,8 +398,7 @@
                     "nullable" : false,
                     "name" : "imageId",
                     "id" : "imageId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   },
                   {
                     "databaseType" : "java.sql.Blob",
@@ -534,8 +406,7 @@
                     "nullable" : false,
                     "name" : "image",
                     "id" : "image",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "ordinalPosition" : 2
                   },
                   {
                     "databaseType" : "java.sql.Timestamp",
@@ -543,8 +414,7 @@
                     "nullable" : false,
                     "name" : "timeStamp",
                     "id" : "timeStamp",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
+                    "ordinalPosition" : 3
                   },
                   {
                     "databaseType" : "java.lang.Integer",
@@ -552,31 +422,26 @@
                     "nullable" : true,
                     "name" : "image_device",
                     "id" : "image_device",
-                    "ordinalPosition" : 4,
-                    "enabled" : true
+                    "ordinalPosition" : 4
                   }
                 ],
                 "name" : "Image",
-                "id" : "Image",
-                "enabled" : true
+                "id" : "Image"
               },
               {
-                "nameProtected" : true,
-                "expanded" : false,
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "Devices_Guard_guardId",
                     "id" : "Devices_Guard_guardId",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "ordinalPosition" : 2
                   },
                   {
                     "expanded" : true,
                     "name" : "locationId",
                     "id" : "locationId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
@@ -593,8 +458,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "locationId_UNIQUE",
-                    "enabled" : true
+                    "id" : "locationId_UNIQUE"
                   },
                   {
                     "expanded" : false,
@@ -616,8 +480,7 @@
                         "ordinalPosition" : 2
                       }
                     ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
+                    "id" : "PRIMARY"
                   }
                 ],
                 "isView" : false,
@@ -629,26 +492,23 @@
                     "nullable" : false,
                     "name" : "locationId",
                     "id" : "locationId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   },
                   {
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
-                    "nullable" : true,
-                    "name" : "lName",
-                    "id" : "lName",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "nullable" : false,
+                    "name" : "name",
+                    "id" : "name",
+                    "ordinalPosition" : 2
                   },
                   {
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
-                    "nullable" : true,
-                    "name" : "lType",
-                    "id" : "lType",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
+                    "nullable" : false,
+                    "name" : "type",
+                    "id" : "type",
+                    "ordinalPosition" : 3
                   },
                   {
                     "databaseType" : "java.lang.Integer",
@@ -657,139 +517,13 @@
                     "nullable" : false,
                     "name" : "Devices_Guard_guardId",
                     "id" : "Devices_Guard_guardId",
-                    "ordinalPosition" : 4,
-                    "enabled" : true
+                    "ordinalPosition" : 4
                   }
                 ],
                 "name" : "Location",
-                "id" : "Location",
-                "enabled" : true
+                "id" : "Location"
               },
               {
-                "nameProtected" : true,
-                "foreignKeys" : [
-                  {
-                    "expanded" : false,
-                    "foreignKeyColumns" : [
-                      {
-                        "foreignDatabaseName" : "ACS",
-                        "foreignSchemaName" : "ACS",
-                        "expanded" : true,
-                        "name" : "Users_userId",
-                        "foreignColumnName" : "userId",
-                        "id" : "Users_userId",
-                        "foreignTableName" : "User",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "name" : "fk_Moderator_Users1",
-                    "id" : "fk_Moderator_Users1",
-                    "enabled" : true
-                  }
-                ],
-                "expanded" : false,
-                "primaryKeyColumns" : [
-                  {
-                    "expanded" : true,
-                    "name" : "Users_userId",
-                    "id" : "Users_userId",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
-                  },
-                  {
-                    "expanded" : true,
-                    "name" : "moderatorId",
-                    "id" : "moderatorId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
-                  }
-                ],
-                "indexes" : [
-                  {
-                    "expanded" : false,
-                    "unique" : true,
-                    "name" : "Moderator_Id_UNIQUE",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "moderatorId",
-                        "id" : "moderatorId",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "Moderator_Id_UNIQUE",
-                    "enabled" : true
-                  },
-                  {
-                    "expanded" : false,
-                    "unique" : true,
-                    "name" : "PRIMARY",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "moderatorId",
-                        "id" : "moderatorId",
-                        "ordinalPosition" : 1
-                      },
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "Users_userId",
-                        "id" : "Users_userId",
-                        "ordinalPosition" : 2
-                      }
-                    ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
-                  },
-                  {
-                    "expanded" : false,
-                    "unique" : false,
-                    "name" : "fk_Moderator_Users1_idx",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "Users_userId",
-                        "id" : "Users_userId",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "fk_Moderator_Users1_idx",
-                    "enabled" : true
-                  }
-                ],
-                "isView" : false,
-                "columns" : [
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
-                    "expanded" : true,
-                    "nullable" : false,
-                    "name" : "moderatorId",
-                    "id" : "moderatorId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
-                    "expanded" : true,
-                    "nullable" : false,
-                    "name" : "Users_userId",
-                    "id" : "Users_userId",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
-                  }
-                ],
-                "name" : "Moderator",
-                "id" : "Moderator",
-                "enabled" : true
-              },
-              {
-                "nameProtected" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -806,18 +540,16 @@
                       }
                     ],
                     "name" : "Numberplate_Images_imageId_fk",
-                    "id" : "Numberplate_Images_imageId_fk",
-                    "enabled" : true
+                    "id" : "Numberplate_Images_imageId_fk"
                   }
                 ],
-                "expanded" : false,
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "numberplateId",
                     "id" : "numberplateId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
@@ -834,8 +566,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
+                    "id" : "PRIMARY"
                   },
                   {
                     "expanded" : false,
@@ -850,8 +581,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "textId_UNIQUE",
-                    "enabled" : true
+                    "id" : "textId_UNIQUE"
                   },
                   {
                     "expanded" : false,
@@ -866,8 +596,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "Numberplate_Images_imageId_fk",
-                    "enabled" : true
+                    "id" : "Numberplate_Images_imageId_fk"
                   }
                 ],
                 "isView" : false,
@@ -877,10 +606,10 @@
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
                     "nullable" : false,
+                    "autoIncrement" : true,
                     "name" : "numberplateId",
                     "id" : "numberplateId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -888,8 +617,7 @@
                     "nullable" : false,
                     "name" : "numberplatestring",
                     "id" : "numberplatestring",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "ordinalPosition" : 2
                   },
                   {
                     "databaseType" : "java.sql.Timestamp",
@@ -897,25 +625,22 @@
                     "nullable" : false,
                     "name" : "time",
                     "id" : "time",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
+                    "ordinalPosition" : 3
                   },
                   {
                     "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
-                    "nullable" : true,
+                    "nullable" : false,
                     "name" : "numberplate_image",
                     "id" : "numberplate_image",
-                    "ordinalPosition" : 4,
-                    "enabled" : true
+                    "ordinalPosition" : 4
                   }
                 ],
                 "name" : "Numberplate",
-                "id" : "Numberplate",
-                "enabled" : true
+                "id" : "Numberplate"
               },
               {
-                "nameProtected" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -932,18 +657,16 @@
                       }
                     ],
                     "name" : "Users_UserGroup_usergroupId_fk",
-                    "id" : "Users_UserGroup_usergroupId_fk",
-                    "enabled" : true
+                    "id" : "Users_UserGroup_usergroupId_fk"
                   }
                 ],
-                "expanded" : false,
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "userId",
                     "id" : "userId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
@@ -960,8 +683,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
+                    "id" : "PRIMARY"
                   },
                   {
                     "expanded" : false,
@@ -976,8 +698,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "User_Id_UNIQUE",
-                    "enabled" : true
+                    "id" : "User_Id_UNIQUE"
                   },
                   {
                     "expanded" : false,
@@ -987,13 +708,12 @@
                       {
                         "orderType" : "ASC",
                         "expanded" : true,
-                        "name" : "userName",
-                        "id" : "userName",
+                        "name" : "username",
+                        "id" : "username",
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "userName_UNIQUE",
-                    "enabled" : true
+                    "id" : "userName_UNIQUE"
                   },
                   {
                     "expanded" : false,
@@ -1008,8 +728,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "Users_UserGroup_usergroupId_fk",
-                    "enabled" : true
+                    "id" : "Users_UserGroup_usergroupId_fk"
                   }
                 ],
                 "isView" : false,
@@ -1019,10 +738,10 @@
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
                     "nullable" : false,
+                    "autoIncrement" : true,
                     "name" : "userId",
                     "id" : "userId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -1030,60 +749,64 @@
                     "nullable" : false,
                     "name" : "firstName",
                     "id" : "firstName",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "ordinalPosition" : 2
                   },
                   {
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
                     "nullable" : false,
-                    "name" : "LastName",
-                    "id" : "LastName",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
+                    "name" : "lastName",
+                    "id" : "lastName",
+                    "ordinalPosition" : 3
                   },
                   {
                     "databaseType" : "java.lang.String",
                     "expanded" : true,
                     "nullable" : false,
-                    "name" : "userName",
-                    "id" : "userName",
-                    "ordinalPosition" : 4,
-                    "enabled" : true
-                  },
-                  {
-                    "databaseType" : "java.lang.String",
-                    "expanded" : true,
-                    "nullable" : false,
-                    "name" : "userPassword",
-                    "id" : "userPassword",
-                    "ordinalPosition" : 5,
-                    "enabled" : true
+                    "name" : "username",
+                    "id" : "username",
+                    "ordinalPosition" : 4
                   },
                   {
                     "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
-                    "nullable" : true,
+                    "nullable" : false,
                     "name" : "user_usergroupId",
                     "id" : "user_usergroupId",
-                    "ordinalPosition" : 6,
-                    "enabled" : true
+                    "ordinalPosition" : 5
                   }
                 ],
                 "name" : "User",
-                "id" : "User",
-                "enabled" : true
+                "id" : "User"
               },
               {
-                "nameProtected" : true,
-                "expanded" : false,
+                "foreignKeys" : [
+                  {
+                    "expanded" : false,
+                    "foreignKeyColumns" : [
+                      {
+                        "foreignDatabaseName" : "ACS",
+                        "foreignSchemaName" : "ACS",
+                        "expanded" : true,
+                        "name" : "username",
+                        "foreignColumnName" : "username",
+                        "id" : "username",
+                        "foreignTableName" : "User",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "name" : "UserAuth_User_userName_fk",
+                    "id" : "UserAuth_User_userName_fk"
+                  }
+                ],
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "authId",
                     "id" : "authId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
@@ -1100,8 +823,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
+                    "id" : "PRIMARY"
                   },
                   {
                     "expanded" : false,
@@ -1116,8 +838,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "UserAuth_authId_uindex",
-                    "enabled" : true
+                    "id" : "UserAuth_authId_uindex"
                   },
                   {
                     "expanded" : false,
@@ -1132,8 +853,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "UserAuth_username_uindex",
-                    "enabled" : true
+                    "id" : "UserAuth_username_uindex"
                   }
                 ],
                 "isView" : false,
@@ -1146,8 +866,7 @@
                     "autoIncrement" : true,
                     "name" : "authId",
                     "id" : "authId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -1155,8 +874,7 @@
                     "nullable" : false,
                     "name" : "username",
                     "id" : "username",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "ordinalPosition" : 2
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -1164,8 +882,7 @@
                     "nullable" : false,
                     "name" : "hash",
                     "id" : "hash",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
+                    "ordinalPosition" : 3
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -1173,16 +890,13 @@
                     "nullable" : false,
                     "name" : "salt",
                     "id" : "salt",
-                    "ordinalPosition" : 4,
-                    "enabled" : true
+                    "ordinalPosition" : 4
                   }
                 ],
                 "name" : "UserAuth",
-                "id" : "UserAuth",
-                "enabled" : true
+                "id" : "UserAuth"
               },
               {
-                "nameProtected" : true,
                 "foreignKeys" : [
                   {
                     "expanded" : false,
@@ -1198,19 +912,17 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "name" : "UserAuth2_Users_userId_fk",
-                    "id" : "UserAuth2_Users_userId_fk",
-                    "enabled" : true
+                    "name" : "UserAuth2_User_userId_fk",
+                    "id" : "UserAuth2_User_userId_fk"
                   }
                 ],
-                "expanded" : false,
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "authId",
                     "id" : "authId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
@@ -1227,8 +939,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
+                    "id" : "PRIMARY"
                   },
                   {
                     "expanded" : false,
@@ -1243,13 +954,12 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "UserAuth2_authId_uindex",
-                    "enabled" : true
+                    "id" : "UserAuth2_authId_uindex"
                   },
                   {
                     "expanded" : false,
                     "unique" : false,
-                    "name" : "UserAuth2_Users_userId_fk",
+                    "name" : "UserAuth2_User_userId_fk",
                     "indexColumns" : [
                       {
                         "orderType" : "ASC",
@@ -1259,8 +969,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "UserAuth2_Users_userId_fk",
-                    "enabled" : true
+                    "id" : "UserAuth2_User_userId_fk"
                   }
                 ],
                 "isView" : false,
@@ -1273,17 +982,16 @@
                     "autoIncrement" : true,
                     "name" : "authId",
                     "id" : "authId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   },
                   {
                     "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
-                    "nullable" : true,
+                    "nullable" : false,
                     "name" : "auth_userId",
                     "id" : "auth_userId",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "ordinalPosition" : 2
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -1291,8 +999,7 @@
                     "nullable" : false,
                     "name" : "hash",
                     "id" : "hash",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
+                    "ordinalPosition" : 3
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -1300,24 +1007,20 @@
                     "nullable" : false,
                     "name" : "salt",
                     "id" : "salt",
-                    "ordinalPosition" : 4,
-                    "enabled" : true
+                    "ordinalPosition" : 4
                   }
                 ],
                 "name" : "UserAuth2",
-                "id" : "UserAuth2",
-                "enabled" : true
+                "id" : "UserAuth2"
               },
               {
-                "nameProtected" : true,
-                "expanded" : false,
+                "expanded" : true,
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
                     "name" : "usergroupId",
                     "id" : "usergroupId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
@@ -1334,8 +1037,22 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "PRIMARY",
-                    "enabled" : true
+                    "id" : "PRIMARY"
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : true,
+                    "name" : "UserGroup_name_uindex",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "name",
+                        "id" : "name",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "UserGroup_name_uindex"
                   },
                   {
                     "expanded" : false,
@@ -1350,8 +1067,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "UserGroup_usergroupId_uindex",
-                    "enabled" : true
+                    "id" : "UserGroup_usergroupId_uindex"
                   }
                 ],
                 "isView" : false,
@@ -1364,8 +1080,7 @@
                     "autoIncrement" : true,
                     "name" : "usergroupId",
                     "id" : "usergroupId",
-                    "ordinalPosition" : 1,
-                    "enabled" : true
+                    "ordinalPosition" : 1
                   },
                   {
                     "databaseType" : "java.lang.String",
@@ -1373,8 +1088,7 @@
                     "nullable" : false,
                     "name" : "name",
                     "id" : "name",
-                    "ordinalPosition" : 2,
-                    "enabled" : true
+                    "ordinalPosition" : 2
                   },
                   {
                     "databaseType" : "java.lang.Integer",
@@ -1383,13 +1097,11 @@
                     "nullable" : false,
                     "name" : "level",
                     "id" : "level",
-                    "ordinalPosition" : 3,
-                    "enabled" : true
+                    "ordinalPosition" : 3
                   }
                 ],
                 "name" : "UserGroup",
-                "id" : "UserGroup",
-                "enabled" : true
+                "id" : "UserGroup"
               }
             ],
             "expanded" : true,

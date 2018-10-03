@@ -73,7 +73,7 @@ public abstract class GeneratedUserAuthImpl implements UserAuth {
     
     @Override
     public User findUsername(Manager<User> foreignManager) {
-        return foreignManager.stream().filter(User.USER_NAME.equal(getUsername())).findAny().orElse(null);
+        return foreignManager.stream().filter(User.USERNAME.equal(getUsername())).findAny().orElse(null);
     }
     
     @Override
