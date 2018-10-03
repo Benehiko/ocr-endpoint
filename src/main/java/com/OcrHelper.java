@@ -30,7 +30,7 @@ public class OcrHelper {
                 out.write(bytes);
             }else{
                 socket.close();
-                result = input.substring(input.indexOf('[')+1, input.indexOf(']')-1);
+                result = input;
                 return input;
             }
         }
