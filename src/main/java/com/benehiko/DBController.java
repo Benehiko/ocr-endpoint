@@ -27,7 +27,7 @@ import com.speedment.runtime.core.exception.SpeedmentException;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
-import sun.misc.IOUtils;
+
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -407,16 +407,16 @@ public class DBController {
 
     @GetMapping("vehicles/image/byVehicleId/{id}")
     @ResponseBody
-    byte[] getVehicleImage(@PathVariable int id) throws SQLException {
+    String getVehicleImage(@PathVariable int id) throws SQLException {
         Optional<Numberplate> numberplate = numberplateManager.stream().filter(Numberplate.NUMBERPLATE_ID.equal(id)).findFirst();
-        byte[] out = null;
+        String out = null;
         if (numberplate.isPresent()) {
             Optional<Blob> blob = imageManager.stream().filter(Image.IMAGE_ID.equal(numberplate.get().getNumberplateImage())).map(Image::getImage).findFirst();
             if (blob.isPresent()){
                 try {
                     InputStream is = blob.get().getBinaryStream();
-                    byte[] b = IOUtils.readFully(is, Integer.MAX_VALUE, false);
-                    out = b;// Base64.getEncoder().encodeToString(b);
+                    byte[] b = is.readAllBytes();
+                    out = Base64.getEncoder().encodeToString(b);
                 } catch (SQLException | IOException e) {
                     e.printStackTrace();
                 }
