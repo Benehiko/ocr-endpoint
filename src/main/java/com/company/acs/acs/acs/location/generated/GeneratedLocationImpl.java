@@ -21,7 +21,6 @@ public abstract class GeneratedLocationImpl implements Location {
     private int locationId;
     private String name;
     private String type;
-    private int devicesGuardGuardId;
     
     protected GeneratedLocationImpl() {}
     
@@ -38,11 +37,6 @@ public abstract class GeneratedLocationImpl implements Location {
     @Override
     public String getType() {
         return type;
-    }
-    
-    @Override
-    public int getDevicesGuardGuardId() {
-        return devicesGuardGuardId;
     }
     
     @Override
@@ -64,18 +58,11 @@ public abstract class GeneratedLocationImpl implements Location {
     }
     
     @Override
-    public Location setDevicesGuardGuardId(int devicesGuardGuardId) {
-        this.devicesGuardGuardId = devicesGuardGuardId;
-        return this;
-    }
-    
-    @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
-        sj.add("locationId = "          + Objects.toString(getLocationId()));
-        sj.add("name = "                + Objects.toString(getName()));
-        sj.add("type = "                + Objects.toString(getType()));
-        sj.add("devicesGuardGuardId = " + Objects.toString(getDevicesGuardGuardId()));
+        sj.add("locationId = " + Objects.toString(getLocationId()));
+        sj.add("name = "       + Objects.toString(getName()));
+        sj.add("type = "       + Objects.toString(getType()));
         return "LocationImpl " + sj.toString();
     }
     
@@ -87,7 +74,6 @@ public abstract class GeneratedLocationImpl implements Location {
         if (this.getLocationId() != thatLocation.getLocationId()) { return false; }
         if (!Objects.equals(this.getName(), thatLocation.getName())) { return false; }
         if (!Objects.equals(this.getType(), thatLocation.getType())) { return false; }
-        if (this.getDevicesGuardGuardId() != thatLocation.getDevicesGuardGuardId()) { return false; }
         return true;
     }
     
@@ -97,7 +83,6 @@ public abstract class GeneratedLocationImpl implements Location {
         hash = 31 * hash + Integer.hashCode(getLocationId());
         hash = 31 * hash + Objects.hashCode(getName());
         hash = 31 * hash + Objects.hashCode(getType());
-        hash = 31 * hash + Integer.hashCode(getDevicesGuardGuardId());
         return hash;
     }
 }

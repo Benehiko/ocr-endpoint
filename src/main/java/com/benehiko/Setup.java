@@ -21,11 +21,4 @@ public class Setup {
         return new Jackson2ObjectMapperBuilder().indentOutput(true);
     }
 
-    @Bean
-    public MultipartConfigurations multipartConfigurations(){
-        MultipartConfigurations multipartConfigurations = new MultipartConfigurations();
-        multipartConfigurations.setMaxFileSize("20MB");
-        multipartConfigurations.setMaxRequestSize("20MB");
-        return multipartConfigurations;
-    }
 }

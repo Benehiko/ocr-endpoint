@@ -13,7 +13,6 @@ import com.company.acs.acs.acs.numberplate.Numberplate;
 import com.company.acs.acs.acs.numberplate.NumberplateImpl;
 import com.company.acs.acs.acs.numberplate.NumberplateManager;
 import com.speedment.runtime.core.exception.SpeedmentException;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,7 +31,6 @@ import static java.util.stream.Collectors.toList;
 
 @RestController
 @RequestMapping("/ocr")
-@EnableConfigurationProperties(MultipartConfigurations.class)
 public class OcrController {
 
     private final DeviceManager deviceManager;

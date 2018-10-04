@@ -27,8 +27,7 @@ public interface GeneratedLocationManager extends Manager<Location> {
     List<Field<Location>> FIELDS = unmodifiableList(asList(
         Location.LOCATION_ID,
         Location.NAME,
-        Location.TYPE,
-        Location.DEVICES_GUARD_GUARD_ID
+        Location.TYPE
     ));
     
     @Override

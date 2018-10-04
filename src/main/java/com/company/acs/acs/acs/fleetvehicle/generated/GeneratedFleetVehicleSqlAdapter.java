@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.speedment.common.injector.State.RESOLVED;
-import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link
@@ -35,7 +34,7 @@ public abstract class GeneratedFleetVehicleSqlAdapter implements SqlAdapter<Flee
         return createEntity()
             .setVehicleId(   resultSet.getInt(1 + offset))
             .setNumberplate( resultSet.getString(2 + offset))
-            .setFleetUser(   getInt(resultSet, 3 + offset))
+            .setFleetUser(   resultSet.getInt(3 + offset))
             ;
     }
     

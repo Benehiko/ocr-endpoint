@@ -34,7 +34,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
         initPart8(sb);
         initPart9(sb);
         initPart10(sb);
-        initPart11(sb);
         return sb.toString();
     }
     
@@ -47,7 +46,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
         Stream.of(
             "{",
             "  \"config\" : {",
-            "    \"appId\" : \"dc966b38-70f9-48df-a8c6-bcac90c14ddb\",",
+            "    \"appId\" : \"1c8a1721-ce09-45c4-bee5-21a79ee19070\",",
             "    \"companyName\" : \"company\",",
             "    \"dbmses\" : [",
             "      {",
@@ -285,8 +284,9 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"id\" : \"fleet_user\",",
             "                    \"name\" : \"fleet_user\",",
-            "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 3",
+            "                    \"nullable\" : false,",
+            "                    \"ordinalPosition\" : 3,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  }",
             "                ],",
             "                \"enabled\" : true,",
@@ -316,6 +316,22 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
+            "                    \"id\" : \"FleetVehicle_numberplate_uindex\",",
+            "                    \"indexColumns\" : [",
+            "                      {",
+            "                        \"expanded\" : true,",
+            "                        \"id\" : \"numberplate\",",
+            "                        \"name\" : \"numberplate\",",
+            "                        \"orderType\" : \"ASC\",",
+            "                        \"ordinalPosition\" : 1",
+            "                      }",
+            "                    ],",
+            "                    \"name\" : \"FleetVehicle_numberplate_uindex\",",
+            "                    \"unique\" : true",
+            "                  },",
+            "                  {",
+            "                    \"enabled\" : true,",
+            "                    \"expanded\" : false,",
             "                    \"id\" : \"PRIMARY\",",
             "                    \"indexColumns\" : [",
             "                      {",
@@ -330,7 +346,6 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"unique\" : true",
             "                  },",
             "                  {",
-            "                    \"enabled\" : true,",
             "                    \"expanded\" : false,",
             "                    \"id\" : \"vehicleId_UNIQUE\",",
             "                    \"indexColumns\" : [",
@@ -341,7 +356,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
             "                      }",
-            "                    ],",
+            "                    ],"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart3(StringBuilder sb) {
+        Stream.of(
             "                    \"name\" : \"vehicleId_UNIQUE\",",
             "                    \"unique\" : true",
             "                  },",
@@ -357,12 +377,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
-            "                    \"name\" : \"FleetVehicle_User_userId_fk\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart3(StringBuilder sb) {
-        Stream.of(
+            "                    \"name\" : \"FleetVehicle_User_userId_fk\",",
             "                    \"unique\" : false",
             "                  }",
             "                ],",
@@ -380,6 +395,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "              {",
             "                \"columns\" : [",
             "                  {",
+            "                    \"autoIncrement\" : true,",
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"imageId\",",
@@ -409,8 +425,9 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"id\" : \"image_device\",",
             "                    \"name\" : \"image_device\",",
-            "                    \"nullable\" : true,",
-            "                    \"ordinalPosition\" : 4",
+            "                    \"nullable\" : false,",
+            "                    \"ordinalPosition\" : 4,",
+            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  }",
             "                ],",
             "                \"expanded\" : true,",
@@ -445,7 +462,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"name\" : \"imageId\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
-            "                      }",
+            "                      }"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart4(StringBuilder sb) {
+        Stream.of(
             "                    ],",
             "                    \"name\" : \"imageId_UNIQUE\",",
             "                    \"unique\" : true",
@@ -463,12 +485,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                      }",
             "                    ],",
             "                    \"name\" : \"PRIMARY\",",
-            "                    \"unique\" : true"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart4(StringBuilder sb) {
-        Stream.of(
+            "                    \"unique\" : true",
             "                  },",
             "                  {",
             "                    \"expanded\" : false,",
@@ -500,6 +517,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "              {",
             "                \"columns\" : [",
             "                  {",
+            "                    \"autoIncrement\" : true,",
             "                    \"databaseType\" : \"java.lang.Integer\",",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"locationId\",",
@@ -523,35 +541,11 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"name\" : \"type\",",
             "                    \"nullable\" : false,",
             "                    \"ordinalPosition\" : 3",
-            "                  },",
-            "                  {",
-            "                    \"databaseType\" : \"java.lang.Integer\",",
-            "                    \"expanded\" : true,",
-            "                    \"id\" : \"Devices_Guard_guardId\",",
-            "                    \"name\" : \"Devices_Guard_guardId\",",
-            "                    \"nullable\" : false,",
-            "                    \"ordinalPosition\" : 4,",
-            "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  }",
             "                ],",
             "                \"expanded\" : true,",
             "                \"id\" : \"Location\",",
             "                \"indexes\" : [",
-            "                  {",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"locationId_UNIQUE\",",
-            "                    \"indexColumns\" : [",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"locationId\",",
-            "                        \"name\" : \"locationId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"locationId_UNIQUE\",",
-            "                    \"unique\" : true",
-            "                  },",
             "                  {",
             "                    \"expanded\" : false,",
             "                    \"id\" : \"PRIMARY\",",
@@ -562,19 +556,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"name\" : \"locationId\",",
             "                        \"orderType\" : \"ASC\",",
             "                        \"ordinalPosition\" : 1",
-            "                      },",
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"Devices_Guard_guardId\",",
-            "                        \"name\" : \"Devices_Guard_guardId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 2",
-            "                      }"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart5(StringBuilder sb) {
-        Stream.of(
+            "                      }",
             "                    ],",
             "                    \"name\" : \"PRIMARY\",",
             "                    \"unique\" : true",
@@ -585,14 +567,13 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"Devices_Guard_guardId\",",
-            "                    \"name\" : \"Devices_Guard_guardId\",",
-            "                    \"ordinalPosition\" : 2",
-            "                  },",
-            "                  {",
-            "                    \"expanded\" : true,",
             "                    \"id\" : \"locationId\",",
-            "                    \"name\" : \"locationId\",",
+            "                    \"name\" : \"locationId\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart5(StringBuilder sb) {
+        Stream.of(
             "                    \"ordinalPosition\" : 1",
             "                  }",
             "                ]",
@@ -651,8 +632,8 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
-            "                    \"id\" : \"Numberplate_Images_imageId_fk\",",
-            "                    \"name\" : \"Numberplate_Images_imageId_fk\"",
+            "                    \"id\" : \"Numberplate_Image_imageId_fk\",",
+            "                    \"name\" : \"Numberplate_Image_imageId_fk\"",
             "                  }",
             "                ],",
             "                \"id\" : \"Numberplate\",",
@@ -674,27 +655,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                  },",
             "                  {",
             "                    \"expanded\" : false,",
-            "                    \"id\" : \"textId_UNIQUE\",",
-            "                    \"indexColumns\" : ["
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart6(StringBuilder sb) {
-        Stream.of(
-            "                      {",
-            "                        \"expanded\" : true,",
-            "                        \"id\" : \"numberplateId\",",
-            "                        \"name\" : \"numberplateId\",",
-            "                        \"orderType\" : \"ASC\",",
-            "                        \"ordinalPosition\" : 1",
-            "                      }",
-            "                    ],",
-            "                    \"name\" : \"textId_UNIQUE\",",
-            "                    \"unique\" : true",
-            "                  },",
-            "                  {",
-            "                    \"expanded\" : false,",
-            "                    \"id\" : \"Numberplate_Images_imageId_fk\",",
+            "                    \"id\" : \"Numberplate_Image_imageId_fk\",",
             "                    \"indexColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
@@ -704,7 +665,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
-            "                    \"name\" : \"Numberplate_Images_imageId_fk\",",
+            "                    \"name\" : \"Numberplate_Image_imageId_fk\",",
             "                    \"unique\" : false",
             "                  }",
             "                ],",
@@ -713,7 +674,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                \"primaryKeyColumns\" : [",
             "                  {",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"numberplateId\",",
+            "                    \"id\" : \"numberplateId\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart6(StringBuilder sb) {
+        Stream.of(
             "                    \"name\" : \"numberplateId\",",
             "                    \"ordinalPosition\" : 1",
             "                  }",
@@ -781,12 +747,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
-            "                    \"id\" : \"Users_UserGroup_usergroupId_fk\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart7(StringBuilder sb) {
-        Stream.of(
+            "                    \"id\" : \"Users_UserGroup_usergroupId_fk\",",
             "                    \"name\" : \"Users_UserGroup_usergroupId_fk\"",
             "                  }",
             "                ],",
@@ -819,7 +780,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                        \"ordinalPosition\" : 1",
             "                      }",
             "                    ],",
-            "                    \"name\" : \"User_Id_UNIQUE\",",
+            "                    \"name\" : \"User_Id_UNIQUE\","
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart7(StringBuilder sb) {
+        Stream.of(
             "                    \"unique\" : true",
             "                  },",
             "                  {",
@@ -887,12 +853,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                  {",
             "                    \"databaseType\" : \"java.lang.String\",",
             "                    \"expanded\" : true,",
-            "                    \"id\" : \"hash\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart8(StringBuilder sb) {
-        Stream.of(
+            "                    \"id\" : \"hash\",",
             "                    \"name\" : \"hash\",",
             "                    \"nullable\" : false,",
             "                    \"ordinalPosition\" : 3",
@@ -925,7 +886,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"id\" : \"UserAuth_User_userName_fk\",",
             "                    \"name\" : \"UserAuth_User_userName_fk\"",
             "                  }",
-            "                ],",
+            "                ],"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart8(StringBuilder sb) {
+        Stream.of(
             "                \"id\" : \"UserAuth\",",
             "                \"indexes\" : [",
             "                  {",
@@ -993,12 +959,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"id\" : \"authId\",",
             "                    \"name\" : \"authId\",",
-            "                    \"nullable\" : false,"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart9(StringBuilder sb) {
-        Stream.of(
+            "                    \"nullable\" : false,",
             "                    \"ordinalPosition\" : 1,",
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  },",
@@ -1031,7 +992,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                \"expanded\" : true,",
             "                \"foreignKeys\" : [",
             "                  {",
-            "                    \"expanded\" : false,",
+            "                    \"expanded\" : false,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart9(StringBuilder sb) {
+        Stream.of(
             "                    \"foreignKeyColumns\" : [",
             "                      {",
             "                        \"expanded\" : true,",
@@ -1099,12 +1065,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                \"isView\" : false,",
             "                \"name\" : \"UserAuth2\",",
             "                \"primaryKeyColumns\" : [",
-            "                  {"
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart10(StringBuilder sb) {
-        Stream.of(
+            "                  {",
             "                    \"expanded\" : true,",
             "                    \"id\" : \"authId\",",
             "                    \"name\" : \"authId\",",
@@ -1137,7 +1098,12 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "                    \"expanded\" : true,",
             "                    \"id\" : \"level\",",
             "                    \"name\" : \"level\",",
-            "                    \"nullable\" : false,",
+            "                    \"nullable\" : false,"
+        ).forEachOrdered(sb::append);
+    }
+    
+    private static void initPart10(StringBuilder sb) {
+        Stream.of(
             "                    \"ordinalPosition\" : 3,",
             "                    \"typeMapper\" : \"com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper\"",
             "                  }",
@@ -1205,12 +1171,7 @@ public class GeneratedAcsMetadata extends AbstractApplicationMetadata {
             "            ]",
             "          }",
             "        ],",
-            "        \"typeName\" : \"MySQL\","
-        ).forEachOrdered(sb::append);
-    }
-    
-    private static void initPart11(StringBuilder sb) {
-        Stream.of(
+            "        \"typeName\" : \"MySQL\",",
             "        \"username\" : \"alano\"",
             "      }",
             "    ],",

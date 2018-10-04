@@ -3,7 +3,7 @@
     "speedmentVersion" : "Speedment:3.1.6",
     "nameProtected" : false,
     "expanded" : true,
-    "appId" : "dc966b38-70f9-48df-a8c6-bcac90c14ddb",
+    "appId" : "1c8a1721-ce09-45c4-bee5-21a79ee19070",
     "companyName" : "company",
     "name" : "ACS",
     "packageLocation" : "src/main/java/",
@@ -233,6 +233,22 @@
                   {
                     "expanded" : false,
                     "unique" : true,
+                    "name" : "FleetVehicle_numberplate_uindex",
+                    "indexColumns" : [
+                      {
+                        "orderType" : "ASC",
+                        "expanded" : true,
+                        "name" : "numberplate",
+                        "id" : "numberplate",
+                        "ordinalPosition" : 1
+                      }
+                    ],
+                    "id" : "FleetVehicle_numberplate_uindex",
+                    "enabled" : true
+                  },
+                  {
+                    "expanded" : false,
+                    "unique" : true,
                     "name" : "PRIMARY",
                     "indexColumns" : [
                       {
@@ -259,8 +275,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "vehicleId_UNIQUE",
-                    "enabled" : true
+                    "id" : "vehicleId_UNIQUE"
                   },
                   {
                     "expanded" : false,
@@ -301,8 +316,9 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
-                    "nullable" : true,
+                    "nullable" : false,
                     "name" : "fleet_user",
                     "id" : "fleet_user",
                     "ordinalPosition" : 3,
@@ -396,6 +412,7 @@
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
                     "nullable" : false,
+                    "autoIncrement" : true,
                     "name" : "imageId",
                     "id" : "imageId",
                     "ordinalPosition" : 1
@@ -418,8 +435,9 @@
                   },
                   {
                     "databaseType" : "java.lang.Integer",
+                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
-                    "nullable" : true,
+                    "nullable" : false,
                     "name" : "image_device",
                     "id" : "image_device",
                     "ordinalPosition" : 4
@@ -433,33 +451,12 @@
                 "primaryKeyColumns" : [
                   {
                     "expanded" : true,
-                    "name" : "Devices_Guard_guardId",
-                    "id" : "Devices_Guard_guardId",
-                    "ordinalPosition" : 2
-                  },
-                  {
-                    "expanded" : true,
                     "name" : "locationId",
                     "id" : "locationId",
                     "ordinalPosition" : 1
                   }
                 ],
                 "indexes" : [
-                  {
-                    "expanded" : false,
-                    "unique" : true,
-                    "name" : "locationId_UNIQUE",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "locationId",
-                        "id" : "locationId",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "locationId_UNIQUE"
-                  },
                   {
                     "expanded" : false,
                     "unique" : true,
@@ -471,13 +468,6 @@
                         "name" : "locationId",
                         "id" : "locationId",
                         "ordinalPosition" : 1
-                      },
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "Devices_Guard_guardId",
-                        "id" : "Devices_Guard_guardId",
-                        "ordinalPosition" : 2
                       }
                     ],
                     "id" : "PRIMARY"
@@ -490,6 +480,7 @@
                     "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
                     "expanded" : true,
                     "nullable" : false,
+                    "autoIncrement" : true,
                     "name" : "locationId",
                     "id" : "locationId",
                     "ordinalPosition" : 1
@@ -509,15 +500,6 @@
                     "name" : "type",
                     "id" : "type",
                     "ordinalPosition" : 3
-                  },
-                  {
-                    "databaseType" : "java.lang.Integer",
-                    "typeMapper" : "com.speedment.runtime.typemapper.primitive.PrimitiveTypeMapper",
-                    "expanded" : true,
-                    "nullable" : false,
-                    "name" : "Devices_Guard_guardId",
-                    "id" : "Devices_Guard_guardId",
-                    "ordinalPosition" : 4
                   }
                 ],
                 "name" : "Location",
@@ -539,8 +521,8 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "name" : "Numberplate_Images_imageId_fk",
-                    "id" : "Numberplate_Images_imageId_fk"
+                    "name" : "Numberplate_Image_imageId_fk",
+                    "id" : "Numberplate_Image_imageId_fk"
                   }
                 ],
                 "expanded" : true,
@@ -570,23 +552,8 @@
                   },
                   {
                     "expanded" : false,
-                    "unique" : true,
-                    "name" : "textId_UNIQUE",
-                    "indexColumns" : [
-                      {
-                        "orderType" : "ASC",
-                        "expanded" : true,
-                        "name" : "numberplateId",
-                        "id" : "numberplateId",
-                        "ordinalPosition" : 1
-                      }
-                    ],
-                    "id" : "textId_UNIQUE"
-                  },
-                  {
-                    "expanded" : false,
                     "unique" : false,
-                    "name" : "Numberplate_Images_imageId_fk",
+                    "name" : "Numberplate_Image_imageId_fk",
                     "indexColumns" : [
                       {
                         "orderType" : "ASC",
@@ -596,7 +563,7 @@
                         "ordinalPosition" : 1
                       }
                     ],
-                    "id" : "Numberplate_Images_imageId_fk"
+                    "id" : "Numberplate_Image_imageId_fk"
                   }
                 ],
                 "isView" : false,

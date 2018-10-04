@@ -54,17 +54,6 @@ public interface GeneratedLocation {
         TypeMapper.identity(),
         false
     );
-    /**
-     * This Field corresponds to the {@link Location} field that can be obtained
-     * using the {@link Location#getDevicesGuardGuardId()} method.
-     */
-    IntField<Location, Integer> DEVICES_GUARD_GUARD_ID = IntField.create(
-        Identifier.DEVICES_GUARD_GUARD_ID,
-        Location::getDevicesGuardGuardId,
-        Location::setDevicesGuardGuardId,
-        TypeMapper.primitive(),
-        false
-    );
     
     /**
      * Returns the locationId of this Location. The locationId field corresponds
@@ -89,15 +78,6 @@ public interface GeneratedLocation {
      * @return the type of this Location
      */
     String getType();
-    
-    /**
-     * Returns the devicesGuardGuardId of this Location. The devicesGuardGuardId
-     * field corresponds to the database column
-     * ACS.ACS.Location.Devices_Guard_guardId.
-     * 
-     * @return the devicesGuardGuardId of this Location
-     */
-    int getDevicesGuardGuardId();
     
     /**
      * Sets the locationId of this Location. The locationId field corresponds to
@@ -126,22 +106,11 @@ public interface GeneratedLocation {
      */
     Location setType(String type);
     
-    /**
-     * Sets the devicesGuardGuardId of this Location. The devicesGuardGuardId
-     * field corresponds to the database column
-     * ACS.ACS.Location.Devices_Guard_guardId.
-     * 
-     * @param devicesGuardGuardId to set of this Location
-     * @return                    this Location instance
-     */
-    Location setDevicesGuardGuardId(int devicesGuardGuardId);
-    
     enum Identifier implements ColumnIdentifier<Location> {
         
-        LOCATION_ID            ("locationId"),
-        NAME                   ("name"),
-        TYPE                   ("type"),
-        DEVICES_GUARD_GUARD_ID ("Devices_Guard_guardId");
+        LOCATION_ID ("locationId"),
+        NAME        ("name"),
+        TYPE        ("type");
         
         private final String columnId;
         private final TableIdentifier<Location> tableIdentifier;

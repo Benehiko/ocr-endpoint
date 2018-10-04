@@ -6,14 +6,10 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
-import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
+import com.speedment.runtime.field.IntForeignKeyField;
 import com.speedment.runtime.field.StringField;
 import com.speedment.runtime.typemapper.TypeMapper;
-
-import java.util.Optional;
-import java.util.OptionalInt;
 
 /**
  * The generated base for the {@link
@@ -48,18 +44,18 @@ public interface GeneratedFleetVehicle {
         FleetVehicle::getNumberplate,
         FleetVehicle::setNumberplate,
         TypeMapper.identity(),
-        false
+        true
     );
     /**
      * This Field corresponds to the {@link FleetVehicle} field that can be
      * obtained using the {@link FleetVehicle#getFleetUser()} method.
      */
-    ComparableForeignKeyField<FleetVehicle, Integer, Integer, User> FLEET_USER = ComparableForeignKeyField.create(
+    IntForeignKeyField<FleetVehicle, Integer, User> FLEET_USER = IntForeignKeyField.create(
         Identifier.FLEET_USER,
-        o -> OptionalUtil.unwrap(o.getFleetUser()),
+        FleetVehicle::getFleetUser,
         FleetVehicle::setFleetUser,
         User.USER_ID,
-        TypeMapper.identity(),
+        TypeMapper.primitive(),
         false
     );
     
@@ -85,7 +81,7 @@ public interface GeneratedFleetVehicle {
      * 
      * @return the fleetUser of this FleetVehicle
      */
-    OptionalInt getFleetUser();
+    int getFleetUser();
     
     /**
      * Sets the vehicleId of this FleetVehicle. The vehicleId field corresponds
@@ -112,7 +108,7 @@ public interface GeneratedFleetVehicle {
      * @param fleetUser to set of this FleetVehicle
      * @return          this FleetVehicle instance
      */
-    FleetVehicle setFleetUser(Integer fleetUser);
+    FleetVehicle setFleetUser(int fleetUser);
     
     /**
      * Queries the specified manager for the referenced User. If no such User
@@ -121,7 +117,7 @@ public interface GeneratedFleetVehicle {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Optional<User> findFleetUser(Manager<User> foreignManager);
+    User findFleetUser(Manager<User> foreignManager);
     
     enum Identifier implements ColumnIdentifier<FleetVehicle> {
         
