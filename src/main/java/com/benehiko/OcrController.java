@@ -1,6 +1,5 @@
 package com.benehiko;
 
-import com.OcrHelper;
 import com.company.acs.AcsApplication;
 import com.company.acs.acs.acs.device.Device;
 import com.company.acs.acs.acs.device.DeviceManager;
@@ -116,7 +115,8 @@ public class OcrController {
                         Timestamp t = new java.sql.Timestamp(parsedDate.getTime());
                         Image image = new ImageImpl().setImage(blob).setImageDevice(device.getDeviceId()).setTimeStamp(t);
                         imageManager.persist(image);
-                        Numberplate numberplate = new NumberplateImpl().setNumberplateImage(image.getImageId()).setNumberplatestring(ocr.getResult());
+                        String ocrResult = ocr.getResult().replace("[", "").replace("]", "");
+                        Numberplate numberplate = new NumberplateImpl().setNumberplateImage(image.getImageId()).setNumberplatestring(ocrResult);
                         numberplateManager.persist(numberplate);
                     } catch (SQLException | SpeedmentException | ParseException e) {
                         e.printStackTrace();
