@@ -12,87 +12,45 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="DockManager">
-    <window id="4">
-      <content type="file-editors">
-        <state>
-          <leaf>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/OcrController.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="228">
-                    <caret line="116" column="64" lean-forward="true" selection-start-line="116" selection-start-column="64" selection-end-line="116" selection-end-column="64" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="false">
-              <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/AuthController.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="220">
-                    <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                      <element signature="e#7044#7045#0" expanded="true" />
-                      <element signature="e#7085#7086#0" expanded="true" />
-                      <element signature="e#7154#7155#0" expanded="true" />
-                      <element signature="e#7206#7207#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-            <file pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/src/main/java/com/OcrHelper.java">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="315">
-                    <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
-                    <folding>
-                      <element signature="imports" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FUSProjectUsageTrigger">
     <session id="1270518977">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="45" />
-          <entry key="xml" value="5" />
+          <entry key="java" value="53" />
+          <entry key="json" value="2" />
+          <entry key="properties" value="1" />
+          <entry key="xml" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="45" />
-          <entry key="XML" value="5" />
+          <entry key="JAVA" value="53" />
+          <entry key="JSON" value="2" />
+          <entry key="Properties" value="1" />
+          <entry key="XML" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="9" />
-          <entry key="java" value="16631" />
+          <entry key="java" value="21192" />
+          <entry key="properties" value="23" />
           <entry key="xml" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="16631" />
+          <entry key="JAVA" value="21192" />
           <entry key="PLAIN_TEXT" value="9" />
+          <entry key="Properties" value="23" />
           <entry key="XML" value="20" />
         </counts>
       </usages-collector>
@@ -103,24 +61,12 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/Main.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/OcrController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/Setup.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
+            <state relative-caret-position="431">
+              <caret line="117" column="67" selection-start-line="117" selection-start-column="67" selection-end-line="117" selection-end-column="67" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -129,18 +75,70 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/DBController.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/OcrHelper.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-53">
-              <caret line="358" column="28" selection-start-line="358" selection-start-column="28" selection-end-line="358" selection-end-column="28" />
+            <state relative-caret-position="310">
+              <caret line="70" column="96" selection-start-line="70" selection-start-column="96" selection-end-line="70" selection-end-column="96" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6266#6267#0" expanded="true" />
-                <element signature="e#6329#6330#0" expanded="true" />
-                <element signature="e#7285#7286#0" expanded="true" />
-                <element signature="e#7354#7355#0" expanded="true" />
-                <element signature="e#8300#8301#0" expanded="true" />
-                <element signature="e#8361#8362#0" expanded="true" />
+                <element signature="e#283#284#0" expanded="true" />
+                <element signature="e#308#309#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="10" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/json/speedment.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" selection-start-line="3" selection-end-line="3" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/Setup.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#706#707#0" expanded="true" />
+                <element signature="e#781#782#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/DBController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="265">
+              <caret line="407" column="43" selection-start-line="407" selection-start-column="32" selection-end-line="407" selection-end-column="43" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -152,18 +150,22 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="spring-beans.schema" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
       <find>guard</find>
+      <find>usergroup</find>
+      <find>devices</find>
+      <find>fleet</find>
+      <find>vehicles</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/benehiko/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/company/acs/generated/GeneratedAcsApplicationBuilder.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/benehiko/RestController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/company/acs/acs/acs/device/generated/GeneratedDevice.java" />
@@ -172,13 +174,16 @@
         <option value="$PROJECT_DIR$/src/main/java/com/Pojo/WebsiteAuth.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/Pojo/OcrResult.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/benehiko/SpringConfigurations.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/benehiko/MultipartConfigurations.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/benehiko/Setup.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/benehiko/AuthController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/OcrHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/benehiko/MultipartConfigurations.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/benehiko/Main.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/application.properties" />
+        <option value="$PROJECT_DIR$/src/main/java/com/benehiko/Setup.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/benehiko/DBController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/benehiko/OcrController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/OcrHelper.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/benehiko/OcrHelper.java" />
       </list>
     </option>
   </component>
@@ -196,10 +201,10 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="2564" />
-    <option name="y" value="28" />
-    <option name="width" value="1226" />
-    <option name="height" value="1041" />
+    <option name="x" value="2306" />
+    <option name="y" value="51" />
+    <option name="width" value="1216" />
+    <option name="height" value="1035" />
   </component>
   <component name="ProjectView">
     <navigator currentView="PackagesPane" proportions="" version="1">
@@ -231,27 +236,6 @@
               <item name="com" type="1f31426a:PackageElementNode" />
               <item name="company.acs" type="1f31426a:PackageElementNode" />
             </path>
-            <path>
-              <item name="ocr-endpoint" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ocr-rest" type="616d4139:PackageViewModuleNode" />
-              <item name="com" type="1f31426a:PackageElementNode" />
-              <item name="company.acs" type="1f31426a:PackageElementNode" />
-              <item name="acs.acs" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="ocr-endpoint" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ocr-rest" type="616d4139:PackageViewModuleNode" />
-              <item name="com" type="1f31426a:PackageElementNode" />
-              <item name="company.acs" type="1f31426a:PackageElementNode" />
-              <item name="acs.acs" type="1f31426a:PackageElementNode" />
-              <item name="device" type="1f31426a:PackageElementNode" />
-            </path>
-            <path>
-              <item name="ocr-endpoint" type="58d84e3e:PackageViewProjectNode" />
-              <item name="ocr-rest" type="616d4139:PackageViewModuleNode" />
-              <item name="com" type="1f31426a:PackageElementNode" />
-              <item name="Pojo" type="1f31426a:PackageElementNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -274,6 +258,13 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="ocr-endpoint" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ocr-rest" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -285,9 +276,10 @@
     <property name="RequestMappingsPanelOrder1" value="1" />
     <property name="RequestMappingsPanelWidth0" value="75" />
     <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/benehiko/Documents/IntelliJ/ocr-rest/src/main/java/com/benehiko/Setup.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538600336713" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1538656890927" />
     <property name="last_opened_file_path" value="$USER_HOME$/Downloads/ocr-rest" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -295,6 +287,12 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="spring.boot" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.benehiko" />
+      <recent name="com.RestControllers" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="configurationTypes">
@@ -313,7 +311,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.Main (1)">
+  <component name="RunManager" selected="Spring Boot.Main">
     <configuration name="Unnamed" type="MavenRunConfiguration" factoryName="Maven">
       <MavenSettings>
         <option name="myGeneralSettings" />
@@ -354,11 +352,11 @@
     </configuration>
     <list>
       <item itemvalue="Maven.Unnamed" />
-      <item itemvalue="Spring Boot.Main (1)" />
+      <item itemvalue="Spring Boot.Main" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Spring Boot.Main (1)" />
+        <item itemvalue="Spring Boot.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -372,50 +370,50 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1538521584453</updated>
-      <workItem from="1538521586115" duration="45449000" />
+      <workItem from="1538521586115" duration="59934000" />
+      <workItem from="1538651987662" duration="3852000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45449000" />
+    <option name="totallyTimeSpent" value="63786000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="0" width="1920" height="1080" extended-state="6" />
-    <editor active="true" />
+    <frame x="2306" y="51" width="1216" height="1035" extended-state="0" />
     <layout>
-      <window_info id="Designer" />
-      <window_info id="Image Layers" />
-      <window_info id="UI Designer" />
-      <window_info id="Favorites" side_tool="true" />
-      <window_info id="Capture Tool" />
-      <window_info id="Web" side_tool="true" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.16862327" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2726496" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Run Dashboard" visible="true" weight="0.2776618" />
-      <window_info anchor="bottom" id="Spring" weight="0.32975295" />
-      <window_info anchor="bottom" id="Terminal" weight="0.32975295" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" weight="0.32881" />
-      <window_info anchor="bottom" id="Java Enterprise" weight="0.32975295" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info id="Designer" order="2" />
+      <window_info id="Image Layers" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Favorites" order="5" side_tool="true" />
+      <window_info id="Capture Tool" order="6" />
+      <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32975295" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32881" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32975295" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="right" id="Palette" />
-      <window_info anchor="right" id="Capture Analysis" />
-      <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="Palette&#9;" />
-      <window_info anchor="right" id="Theme Preview" />
-      <window_info anchor="right" id="Bean Validation" />
+      <window_info anchor="bottom" id="Spring" order="7" weight="0.32975295" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32975295" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="10" weight="0.32881" />
+      <window_info anchor="bottom" id="Java Enterprise" order="11" weight="0.32975295" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="13" show_stripe_button="false" />
+      <window_info active="true" anchor="bottom" id="Run Dashboard" order="14" visible="true" weight="0.2913472" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Maven Projects" order="5" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Theme Preview" order="8" />
+      <window_info anchor="right" id="Bean Validation" order="9" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -463,13 +461,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/Pojo/OcrResult.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/Pojo/OcrResult.java" />
     <entry file="jar:///usr/lib/jvm/jdk1.8.0_181/src.zip!/java/util/stream/Collectors.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -488,10 +480,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-560">
           <caret line="56" column="34" selection-start-line="56" selection-start-column="34" selection-end-line="56" selection-end-column="34" />
-          <folding>
-            <element signature="e#1418#1419#0" expanded="true" />
-            <element signature="e#1476#1477#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -523,16 +511,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/MultipartConfigurations.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="31" lean-forward="true" selection-start-line="10" selection-start-column="31" selection-end-line="10" selection-end-column="31" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/Pojo/WebsiteAuth.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -547,56 +525,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/Setup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="47" selection-start-line="14" selection-start-column="47" selection-end-line="14" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="22" lean-forward="true" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/AuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="78" column="35" lean-forward="true" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#7044#7045#0" expanded="true" />
-            <element signature="e#7085#7086#0" expanded="true" />
-            <element signature="e#7154#7155#0" expanded="true" />
-            <element signature="e#7206#7207#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/DBController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-53">
-          <caret line="358" column="28" selection-start-line="358" selection-start-column="28" selection-end-line="358" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6266#6267#0" expanded="true" />
-            <element signature="e#6329#6330#0" expanded="true" />
-            <element signature="e#7285#7286#0" expanded="true" />
-            <element signature="e#7354#7355#0" expanded="true" />
-            <element signature="e#8300#8301#0" expanded="true" />
-            <element signature="e#8361#8362#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jar:///usr/lib/jvm/jdk1.8.0_181/src.zip!/java/text/DateFormat.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="199">
@@ -604,22 +532,90 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/OcrController.java">
+    <entry file="file://$PROJECT_DIR$/target/classes/META-INF/spring-configuration-metadata.json" />
+    <entry file="file://$PROJECT_DIR$/config.xml" />
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/MultipartConfigurations.java" />
+    <entry file="jar://$MAVEN_REPOSITORY$/org/springframework/spring-web/5.0.9.RELEASE/spring-web-5.0.9.RELEASE-sources.jar!/org/springframework/web/multipart/MultipartFile.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="116" column="64" lean-forward="true" selection-start-line="116" selection-start-column="64" selection-end-line="116" selection-end-column="64" />
+        <state relative-caret-position="221">
+          <caret line="84" column="11" selection-start-line="84" selection-start-column="11" selection-end-line="84" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/OcrHelper.java">
+    <entry file="file://$PROJECT_DIR$/src/main/json/speedment.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="32" column="30" selection-start-line="32" selection-start-column="30" selection-end-line="32" selection-end-column="30" />
+        <state relative-caret-position="15">
+          <caret line="1" column="14" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/application.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/Setup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#706#707#0" expanded="true" />
+            <element signature="e#781#782#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/AuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/OcrController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="117" column="67" selection-start-line="117" selection-start-column="67" selection-end-line="117" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/DBController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="407" column="43" selection-start-line="407" selection-start-column="32" selection-end-line="407" selection-end-column="43" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/benehiko/OcrHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="310">
+          <caret line="70" column="96" selection-start-line="70" selection-start-column="96" selection-end-line="70" selection-end-column="96" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#283#284#0" expanded="true" />
+            <element signature="e#308#309#0" expanded="true" />
           </folding>
         </state>
       </provider>

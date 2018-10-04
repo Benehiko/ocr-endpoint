@@ -118,7 +118,7 @@ public class OcrController {
                         String ocrResult = ocr.getResult().replace("[", "").replace("]", "");
                         Numberplate numberplate = new NumberplateImpl().setNumberplateImage(image.getImageId()).setNumberplatestring(ocrResult);
                         numberplateManager.persist(numberplate);
-                    } catch (SQLException | SpeedmentException | ParseException e) {
+                    } catch (SQLException | SpeedmentException | ParseException | IOException e) {
                         e.printStackTrace();
                     }
                 }
