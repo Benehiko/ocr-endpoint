@@ -407,16 +407,16 @@ public class DBController {
 
     @GetMapping("vehicles/image/byVehicleId/{id}")
     @ResponseBody
-    String getVehicleImage(@PathVariable int id) throws SQLException {
+    byte[] getVehicleImage(@PathVariable int id) throws SQLException {
         Optional<Numberplate> numberplate = numberplateManager.stream().filter(Numberplate.NUMBERPLATE_ID.equal(id)).findFirst();
-        String out = null;
+        byte[] out = null;
         if (numberplate.isPresent()) {
             Optional<Blob> blob = imageManager.stream().filter(Image.IMAGE_ID.equal(numberplate.get().getNumberplateImage())).map(Image::getImage).findFirst();
             if (blob.isPresent()){
                 try {
                     InputStream is = blob.get().getBinaryStream();
                     byte[] b = IOUtils.readFully(is, Integer.MAX_VALUE, false);
-                    out = Base64.getEncoder().encodeToString(b);
+                    out = b;// Base64.getEncoder().encodeToString(b);
                 } catch (SQLException | IOException e) {
                     e.printStackTrace();
                 }
