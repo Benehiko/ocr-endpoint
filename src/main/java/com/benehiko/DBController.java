@@ -202,6 +202,15 @@ public class DBController {
         return result;
     }
 
+    @GetMapping("fleetvehiclesWithUsers/byUsername/{username}")
+    @ResponseBody
+    List getFleetWithUsersByUsername(@PathVariable String numberplate){
+        List result = new ArrayList();
+        Join<Tuple2<FleetVehicle, User>> join = joinComponent.from(FleetVehicleManager.IDENTIFIER).innerJoinOn(User.USER_ID).equal(FleetVehicle.FLEET_USER).build(Tuples::of);
+        join.stream().forEachOrdered(result::add);
+        return result;
+    }
+
     @PostMapping("fleetvehicles")
     @ResponseBody
     boolean addFleetVehicle(@RequestParam("numberplate") String numberplate, @RequestParam("username") String username) throws SpeedmentException {
