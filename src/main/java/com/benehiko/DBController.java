@@ -23,11 +23,13 @@ import com.company.acs.acs.acs.userauth2.UserAuth2Manager;
 import com.company.acs.acs.acs.usergroup.UserGroup;
 import com.company.acs.acs.acs.usergroup.UserGroupImpl;
 import com.company.acs.acs.acs.usergroup.UserGroupManager;
+import com.speedment.common.tuple.Tuple2;
+import com.speedment.common.tuple.Tuples;
 import com.speedment.runtime.core.exception.SpeedmentException;
+import com.speedment.runtime.join.Join;
 import com.speedment.runtime.join.JoinComponent;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
-
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -189,6 +191,15 @@ public class DBController {
     @ResponseBody
     List<FleetVehicle> getFleet() {
         return fleetVehicleManager.stream().collect(toList());
+    }
+
+    @GetMapping("fleetvehiclesWithUsers")
+    @ResponseBody
+    List getFleetWithUsers(){
+        List result = new ArrayList<>();
+        Join<Tuple2<FleetVehicle, User>> join = joinComponent.from(FleetVehicleManager.IDENTIFIER).innerJoinOn(User.USER_ID).equal(FleetVehicle.FLEET_USER).build(Tuples::of);
+        join.stream().forEachOrdered(result::add);
+        return result;
     }
 
     @PostMapping("fleetvehicles")
