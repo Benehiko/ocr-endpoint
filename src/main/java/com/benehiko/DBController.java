@@ -389,6 +389,18 @@ public class DBController {
 
     }
 
+    @GetMapping("vehicles/byDateNumberplate/{from}/{to}/{numberplate}")
+    @ResponseBody
+    List<Numberplate> getVehiclesByDate(@PathVariable String from, @PathVariable String to, @PathVariable String numberplate) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd H");
+        Date fromParsed = dateFormat.parse(from);
+        Date toParsed = dateFormat.parse(to);
+        Timestamp fromDate = new java.sql.Timestamp(fromParsed.getTime());
+        Timestamp toDate = new java.sql.Timestamp(toParsed.getTime());
+
+        return numberplateManager.stream().filter(Numberplate.TIME.between(fromDate, toDate)).filter(Numberplate.NUMBERPLATESTRING.equalIgnoreCase(numberplate)).collect(toList());
+    }
+
     @GetMapping("vehicles/byDevice/{alias}")
     @ResponseBody
     Map<Integer, List<Numberplate>> getVehiclesByDevice(@PathVariable String alias){
