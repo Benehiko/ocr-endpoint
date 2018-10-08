@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.speedment.common.injector.State.RESOLVED;
-import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link
@@ -34,7 +33,7 @@ public abstract class GeneratedUserAuth2SqlAdapter implements SqlAdapter<UserAut
     protected UserAuth2 apply(ResultSet resultSet, int offset) throws SQLException {
         return createEntity()
             .setAuthId(     resultSet.getInt(1 + offset))
-            .setAuthUserId( getInt(resultSet, 2 + offset))
+            .setAuthUserId( resultSet.getInt(2 + offset))
             .setHash(       resultSet.getString(3 + offset))
             .setSalt(       resultSet.getString(4 + offset))
             ;

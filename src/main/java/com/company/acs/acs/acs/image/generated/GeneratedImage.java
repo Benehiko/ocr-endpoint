@@ -6,17 +6,14 @@ import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.config.identifier.ColumnIdentifier;
 import com.speedment.runtime.config.identifier.TableIdentifier;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
 import com.speedment.runtime.field.ComparableField;
-import com.speedment.runtime.field.ComparableForeignKeyField;
 import com.speedment.runtime.field.IntField;
+import com.speedment.runtime.field.IntForeignKeyField;
 import com.speedment.runtime.field.ReferenceField;
 import com.speedment.runtime.typemapper.TypeMapper;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
-import java.util.Optional;
-import java.util.OptionalInt;
 
 /**
  * The generated base for the {@link
@@ -68,12 +65,12 @@ public interface GeneratedImage {
      * This Field corresponds to the {@link Image} field that can be obtained
      * using the {@link Image#getImageDevice()} method.
      */
-    ComparableForeignKeyField<Image, Integer, Integer, Device> IMAGE_DEVICE = ComparableForeignKeyField.create(
+    IntForeignKeyField<Image, Integer, Device> IMAGE_DEVICE = IntForeignKeyField.create(
         Identifier.IMAGE_DEVICE,
-        o -> OptionalUtil.unwrap(o.getImageDevice()),
+        Image::getImageDevice,
         Image::setImageDevice,
         Device.DEVICE_ID,
-        TypeMapper.identity(),
+        TypeMapper.primitive(),
         false
     );
     
@@ -107,7 +104,7 @@ public interface GeneratedImage {
      * 
      * @return the imageDevice of this Image
      */
-    OptionalInt getImageDevice();
+    int getImageDevice();
     
     /**
      * Sets the imageId of this Image. The imageId field corresponds to the
@@ -143,7 +140,7 @@ public interface GeneratedImage {
      * @param imageDevice to set of this Image
      * @return            this Image instance
      */
-    Image setImageDevice(Integer imageDevice);
+    Image setImageDevice(int imageDevice);
     
     /**
      * Queries the specified manager for the referenced Device. If no such
@@ -152,7 +149,7 @@ public interface GeneratedImage {
      * @param foreignManager the manager to query for the entity
      * @return               the foreign entity referenced
      */
-    Optional<Device> findImageDevice(Manager<Device> foreignManager);
+    Device findImageDevice(Manager<Device> foreignManager);
     
     enum Identifier implements ColumnIdentifier<Image> {
         

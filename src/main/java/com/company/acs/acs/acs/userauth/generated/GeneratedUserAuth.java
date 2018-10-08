@@ -43,7 +43,7 @@ public interface GeneratedUserAuth {
         Identifier.USERNAME,
         UserAuth::getUsername,
         UserAuth::setUsername,
-        User.USER_NAME,
+        User.USERNAME,
         TypeMapper.identity(),
         true
     );

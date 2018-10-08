@@ -20,11 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.crypto.SecretKey;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
-import java.nio.charset.StandardCharsets;
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
+import java.util.Base64;
+import java.util.Optional;
 import java.util.OptionalInt;
 
 @RestController
@@ -45,16 +47,17 @@ public class AuthController {
 
     @PostMapping(path = "register/mobile", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    boolean registerMobile(@RequestBody DeviceAuth deviceAuth, Device device) {
+    boolean registerMobile(@RequestBody DeviceAuth deviceAuth, Device device) throws UnsupportedEncodingException {
         if (deviceAuth != null) {
-            String salt = getSalt();
-            byte[] hash = genHash(deviceAuth.getPassword(), salt);
+            byte[] salt = getSalt();
+            char[] password = (deviceAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
+            byte[] hash = genHash(password, salt);
             OptionalInt userID = device.getDeviceUser();
             if (userID.isPresent()) {
-                User user = userManager.stream().filter(User.USER_ID.equal(userID.getAsInt())).findFirst().orElse(null);
-                if (user != null) {
-                    String h = Arrays.toString(hash);
-                    UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.getUserId()).setHash(h).setSalt(salt);
+                Optional<User> user = userManager.stream().filter(User.USER_ID.equal(userID.getAsInt())).findFirst();
+                if (user.isPresent()) {
+                    String h = getStringFromBytes(hash);
+                    UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(getStringFromBytes(salt));
                     try {
                         userAuth2Manager.persist(userAuth2);
                         return true;
@@ -69,14 +72,16 @@ public class AuthController {
 
     @PostMapping(path = "register/website", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    boolean registerWebsite(@RequestBody WebsiteAuth websiteAuth) {
+    boolean registerWebsite(@RequestBody WebsiteAuth websiteAuth) throws UnsupportedEncodingException {
         if (websiteAuth != null) {
-            User user = userManager.stream().filter(User.USER_NAME.equal(websiteAuth.getUsername())).findFirst().orElse(null);
-            if (user != null) {
-                String salt = getSalt();
-                byte[] hash = genHash(websiteAuth.getPassword(), salt);
-                String h = Arrays.toString(hash);
-                UserAuth userAuth = new UserAuthImpl().setHash(h).setUsername(user.getUserName()).setSalt(salt);
+            String username = websiteAuth.getUsername();
+            Optional<User> user = userManager.stream().filter(User.USERNAME.equalIgnoreCase(username)).findFirst();
+            if (user.isPresent()) {
+                byte[] salt = getSalt();
+                char[] password = (websiteAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
+                byte[] hash = genHash(password, salt);
+                String h = getStringFromBytes(hash);
+                UserAuth userAuth = new UserAuthImpl().setHash(h).setUsername(user.get().getUsername()).setSalt(getStringFromBytes(salt));
                 try {
                     userAuthManager.persist(userAuth);
                     return true;
@@ -90,22 +95,22 @@ public class AuthController {
 
     @PostMapping(path = "login/mobile", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    boolean authMobile(@RequestBody DeviceAuth deviceAuth) {
+    boolean authMobile(@RequestBody DeviceAuth deviceAuth) throws UnsupportedEncodingException {
         if (deviceAuth != null) {
             String mac = deviceAuth.getMac();
             String password = deviceAuth.getPassword();
 
-            Device tmpDevice = deviceManager.stream().filter(Device.MAC.equal(mac)).findFirst().orElse(null);
-            if (tmpDevice != null) {
-                OptionalInt optionalInt = tmpDevice.getDeviceUser();
+            Optional<Device> tmpDevice = deviceManager.stream().filter(Device.MAC.equal(mac)).findFirst();
+            if (tmpDevice.isPresent()) {
+                OptionalInt optionalInt = tmpDevice.get().getDeviceUser();
                 if (optionalInt.isPresent()) {
                     User tmpUser = userManager.stream().filter(User.USER_ID.equal(optionalInt.getAsInt())).findFirst().orElse(null);
                     if (tmpUser != null) {
                         UserAuth2 userAuth2 = userAuth2Manager.stream().filter(UserAuth2.AUTH_USER_ID.equal(tmpUser.getUserId())).findFirst().orElse(null);
                         if (userAuth2 != null) {
-                            String hash = userAuth2.getHash();
-                            String salt = userAuth2.getSalt();
-                            String pass = password.concat(salt);
+                            byte[] hash = getBytesFromString(userAuth2.getHash());
+                            byte[] salt = getBytesFromString(userAuth2.getHash());
+                            char[] pass = (deviceAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
                             return checkPassword(pass, hash, salt);
                         }
                     }
@@ -119,23 +124,22 @@ public class AuthController {
     @PostMapping(path = "login/website", consumes = "application/json", produces = "application/json")
     @ResponseBody
     boolean authWebsite(@RequestBody WebsiteAuth websiteAuth) {
-        UserAuth auth = userAuthManager.stream().filter(UserAuth.USERNAME.equal(websiteAuth.getUsername())).findFirst().orElse(null);
-        if (auth != null) {
-            String hash = auth.getHash();
-            String salt = auth.getHash();
-            String pass = websiteAuth.getPassword().concat(salt);
+        Optional<UserAuth> auth = userAuthManager.stream().filter(UserAuth.USERNAME.equalIgnoreCase(websiteAuth.getUsername())).findFirst();
+        if (auth.isPresent()) {
+            byte[] hash = getBytesFromString(auth.get().getHash());
+            byte[] salt = getBytesFromString(auth.get().getSalt());
+            char[] pass = (websiteAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
             return checkPassword(pass, hash, salt);
         }
         return false;
     }
 
-    private byte[] genHash(String password, String salt) {
+    private byte[] genHash(char[] password, byte[] salt) {
         try {
             SecretKeyFactory skf = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA512");
-            PBEKeySpec spec = new PBEKeySpec(password.toCharArray(), salt.getBytes(StandardCharsets.UTF_8), 1, 256);
+            PBEKeySpec spec = new PBEKeySpec(password, salt, 1, 256);
             SecretKey key = skf.generateSecret(spec);
-            byte[] res = key.getEncoded();
-            return res;
+            return key.getEncoded();
 
         } catch (NoSuchAlgorithmException | InvalidKeySpecException e) {
             System.out.println(e);
@@ -143,14 +147,21 @@ public class AuthController {
         return new byte[0];
     }
 
-    private String getSalt() {
+    private byte[] getSalt() {
         SecureRandom random = new SecureRandom();
-        byte seed[] = random.generateSeed(20);
-        return Arrays.toString(seed);
+        return random.generateSeed(20);
     }
 
-    private boolean checkPassword(String password, String hash, String salt) {
+    private boolean checkPassword(char[] password, byte[] hash, byte[] salt) {
         byte[] h = genHash(password, salt);
-        return Arrays.equals(h, hash.getBytes(StandardCharsets.UTF_8));
+        return Arrays.equals(h, hash);
+    }
+
+    private String getStringFromBytes(byte[] b){
+        return Base64.getEncoder().encodeToString(b);
+    }
+
+    private byte[] getBytesFromString(String s){
+        return Base64.getDecoder().decode(s);
     }
 }

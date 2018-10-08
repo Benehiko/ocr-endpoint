@@ -42,8 +42,7 @@ implements GeneratedLocationManager {
     @Override
     public Stream<Field<Location>> primaryKeyFields() {
         return Stream.of(
-            Location.LOCATION_ID,
-            Location.DEVICES_GUARD_GUARD_ID
+            Location.LOCATION_ID
         );
     }
 }

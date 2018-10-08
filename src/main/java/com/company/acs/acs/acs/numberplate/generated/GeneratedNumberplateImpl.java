@@ -4,12 +4,9 @@ import com.company.acs.acs.acs.image.Image;
 import com.company.acs.acs.acs.numberplate.Numberplate;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
 
 import java.sql.Timestamp;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.StringJoiner;
 
 /**
@@ -27,7 +24,7 @@ public abstract class GeneratedNumberplateImpl implements Numberplate {
     private int numberplateId;
     private String numberplatestring;
     private Timestamp time;
-    private Integer numberplateImage;
+    private int numberplateImage;
     
     protected GeneratedNumberplateImpl() {}
     
@@ -47,8 +44,8 @@ public abstract class GeneratedNumberplateImpl implements Numberplate {
     }
     
     @Override
-    public OptionalInt getNumberplateImage() {
-        return OptionalUtil.ofNullable(numberplateImage);
+    public int getNumberplateImage() {
+        return numberplateImage;
     }
     
     @Override
@@ -70,18 +67,14 @@ public abstract class GeneratedNumberplateImpl implements Numberplate {
     }
     
     @Override
-    public Numberplate setNumberplateImage(Integer numberplateImage) {
+    public Numberplate setNumberplateImage(int numberplateImage) {
         this.numberplateImage = numberplateImage;
         return this;
     }
     
     @Override
-    public Optional<Image> findNumberplateImage(Manager<Image> foreignManager) {
-        if (getNumberplateImage().isPresent()) {
-            return foreignManager.stream().filter(Image.IMAGE_ID.equal(getNumberplateImage().getAsInt())).findAny();
-        } else {
-            return Optional.empty();
-        }
+    public Image findNumberplateImage(Manager<Image> foreignManager) {
+        return foreignManager.stream().filter(Image.IMAGE_ID.equal(getNumberplateImage())).findAny().orElse(null);
     }
     
     @Override
@@ -90,7 +83,7 @@ public abstract class GeneratedNumberplateImpl implements Numberplate {
         sj.add("numberplateId = "     + Objects.toString(getNumberplateId()));
         sj.add("numberplatestring = " + Objects.toString(getNumberplatestring()));
         sj.add("time = "              + Objects.toString(getTime()));
-        sj.add("numberplateImage = "  + Objects.toString(OptionalUtil.unwrap(getNumberplateImage())));
+        sj.add("numberplateImage = "  + Objects.toString(getNumberplateImage()));
         return "NumberplateImpl " + sj.toString();
     }
     
@@ -102,7 +95,7 @@ public abstract class GeneratedNumberplateImpl implements Numberplate {
         if (this.getNumberplateId() != thatNumberplate.getNumberplateId()) { return false; }
         if (!Objects.equals(this.getNumberplatestring(), thatNumberplate.getNumberplatestring())) { return false; }
         if (!Objects.equals(this.getTime(), thatNumberplate.getTime())) { return false; }
-        if (!Objects.equals(this.getNumberplateImage(), thatNumberplate.getNumberplateImage())) { return false; }
+        if (this.getNumberplateImage() != thatNumberplate.getNumberplateImage()) { return false; }
         return true;
     }
     
@@ -112,7 +105,7 @@ public abstract class GeneratedNumberplateImpl implements Numberplate {
         hash = 31 * hash + Integer.hashCode(getNumberplateId());
         hash = 31 * hash + Objects.hashCode(getNumberplatestring());
         hash = 31 * hash + Objects.hashCode(getTime());
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getNumberplateImage()));
+        hash = 31 * hash + Integer.hashCode(getNumberplateImage());
         return hash;
     }
 }

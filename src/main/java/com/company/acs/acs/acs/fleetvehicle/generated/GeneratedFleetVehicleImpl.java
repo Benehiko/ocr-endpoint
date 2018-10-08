@@ -4,11 +4,8 @@ import com.company.acs.acs.acs.fleetvehicle.FleetVehicle;
 import com.company.acs.acs.acs.user.User;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
 
 import java.util.Objects;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.StringJoiner;
 
 /**
@@ -25,7 +22,7 @@ public abstract class GeneratedFleetVehicleImpl implements FleetVehicle {
     
     private int vehicleId;
     private String numberplate;
-    private Integer fleetUser;
+    private int fleetUser;
     
     protected GeneratedFleetVehicleImpl() {}
     
@@ -40,8 +37,8 @@ public abstract class GeneratedFleetVehicleImpl implements FleetVehicle {
     }
     
     @Override
-    public OptionalInt getFleetUser() {
-        return OptionalUtil.ofNullable(fleetUser);
+    public int getFleetUser() {
+        return fleetUser;
     }
     
     @Override
@@ -57,18 +54,14 @@ public abstract class GeneratedFleetVehicleImpl implements FleetVehicle {
     }
     
     @Override
-    public FleetVehicle setFleetUser(Integer fleetUser) {
+    public FleetVehicle setFleetUser(int fleetUser) {
         this.fleetUser = fleetUser;
         return this;
     }
     
     @Override
-    public Optional<User> findFleetUser(Manager<User> foreignManager) {
-        if (getFleetUser().isPresent()) {
-            return foreignManager.stream().filter(User.USER_ID.equal(getFleetUser().getAsInt())).findAny();
-        } else {
-            return Optional.empty();
-        }
+    public User findFleetUser(Manager<User> foreignManager) {
+        return foreignManager.stream().filter(User.USER_ID.equal(getFleetUser())).findAny().orElse(null);
     }
     
     @Override
@@ -76,7 +69,7 @@ public abstract class GeneratedFleetVehicleImpl implements FleetVehicle {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
         sj.add("vehicleId = "   + Objects.toString(getVehicleId()));
         sj.add("numberplate = " + Objects.toString(getNumberplate()));
-        sj.add("fleetUser = "   + Objects.toString(OptionalUtil.unwrap(getFleetUser())));
+        sj.add("fleetUser = "   + Objects.toString(getFleetUser()));
         return "FleetVehicleImpl " + sj.toString();
     }
     
@@ -87,7 +80,7 @@ public abstract class GeneratedFleetVehicleImpl implements FleetVehicle {
         final FleetVehicle thatFleetVehicle = (FleetVehicle)that;
         if (this.getVehicleId() != thatFleetVehicle.getVehicleId()) { return false; }
         if (!Objects.equals(this.getNumberplate(), thatFleetVehicle.getNumberplate())) { return false; }
-        if (!Objects.equals(this.getFleetUser(), thatFleetVehicle.getFleetUser())) { return false; }
+        if (this.getFleetUser() != thatFleetVehicle.getFleetUser()) { return false; }
         return true;
     }
     
@@ -96,7 +89,7 @@ public abstract class GeneratedFleetVehicleImpl implements FleetVehicle {
         int hash = 7;
         hash = 31 * hash + Integer.hashCode(getVehicleId());
         hash = 31 * hash + Objects.hashCode(getNumberplate());
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getFleetUser()));
+        hash = 31 * hash + Integer.hashCode(getFleetUser());
         return hash;
     }
 }

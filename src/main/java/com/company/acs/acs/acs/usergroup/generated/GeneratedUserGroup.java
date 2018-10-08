@@ -41,7 +41,7 @@ public interface GeneratedUserGroup {
         UserGroup::getName,
         UserGroup::setName,
         TypeMapper.identity(),
-        false
+        true
     );
     /**
      * This Field corresponds to the {@link UserGroup} field that can be

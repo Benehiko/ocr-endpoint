@@ -88,8 +88,12 @@ public abstract class GeneratedDeviceImpl implements Device {
     }
     
     @Override
-    public Location findDeviceId(Manager<Location> foreignManager) {
-        return foreignManager.stream().filter(Location.LOCATION_ID.equal(getDeviceId())).findAny().orElse(null);
+    public Optional<Location> findDeviceLocation(Manager<Location> foreignManager) {
+        if (getDeviceLocation().isPresent()) {
+            return foreignManager.stream().filter(Location.LOCATION_ID.equal(getDeviceLocation().getAsInt())).findAny();
+        } else {
+            return Optional.empty();
+        }
     }
     
     @Override

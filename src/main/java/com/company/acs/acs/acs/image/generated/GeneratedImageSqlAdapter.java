@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import static com.speedment.common.injector.State.RESOLVED;
-import static com.speedment.runtime.core.internal.util.sql.ResultSetUtil.*;
 
 /**
  * The generated Sql Adapter for a {@link com.company.acs.acs.acs.image.Image}
@@ -36,7 +35,7 @@ public abstract class GeneratedImageSqlAdapter implements SqlAdapter<Image> {
             .setImageId(     resultSet.getInt(1 + offset))
             .setImage(       resultSet.getBlob(2 + offset))
             .setTimeStamp(   resultSet.getTimestamp(3 + offset))
-            .setImageDevice( getInt(resultSet, 4 + offset))
+            .setImageDevice( resultSet.getInt(4 + offset))
             ;
     }
     

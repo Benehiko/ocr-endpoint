@@ -28,7 +28,7 @@ public interface GeneratedUserManager extends Manager<User> {
         User.USER_ID,
         User.FIRST_NAME,
         User.LAST_NAME,
-        User.USER_NAME,
+        User.USERNAME,
         User.USER_USERGROUP_ID
     ));
     

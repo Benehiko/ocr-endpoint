@@ -2,10 +2,8 @@ package com.company.acs.acs.acs.location.generated;
 
 import com.company.acs.acs.acs.location.Location;
 import com.speedment.common.annotation.GeneratedCode;
-import com.speedment.runtime.core.util.OptionalUtil;
 
 import java.util.Objects;
-import java.util.Optional;
 import java.util.StringJoiner;
 
 /**
@@ -21,9 +19,8 @@ import java.util.StringJoiner;
 public abstract class GeneratedLocationImpl implements Location {
     
     private int locationId;
-    private String lName;
-    private String lType;
-    private int devicesGuardGuardId;
+    private String name;
+    private String type;
     
     protected GeneratedLocationImpl() {}
     
@@ -33,18 +30,13 @@ public abstract class GeneratedLocationImpl implements Location {
     }
     
     @Override
-    public Optional<String> getLName() {
-        return Optional.ofNullable(lName);
+    public String getName() {
+        return name;
     }
     
     @Override
-    public Optional<String> getLType() {
-        return Optional.ofNullable(lType);
-    }
-    
-    @Override
-    public int getDevicesGuardGuardId() {
-        return devicesGuardGuardId;
+    public String getType() {
+        return type;
     }
     
     @Override
@@ -54,30 +46,23 @@ public abstract class GeneratedLocationImpl implements Location {
     }
     
     @Override
-    public Location setLName(String lName) {
-        this.lName = lName;
+    public Location setName(String name) {
+        this.name = name;
         return this;
     }
     
     @Override
-    public Location setLType(String lType) {
-        this.lType = lType;
-        return this;
-    }
-    
-    @Override
-    public Location setDevicesGuardGuardId(int devicesGuardGuardId) {
-        this.devicesGuardGuardId = devicesGuardGuardId;
+    public Location setType(String type) {
+        this.type = type;
         return this;
     }
     
     @Override
     public String toString() {
         final StringJoiner sj = new StringJoiner(", ", "{ ", " }");
-        sj.add("locationId = "          + Objects.toString(getLocationId()));
-        sj.add("lName = "               + Objects.toString(OptionalUtil.unwrap(getLName())));
-        sj.add("lType = "               + Objects.toString(OptionalUtil.unwrap(getLType())));
-        sj.add("devicesGuardGuardId = " + Objects.toString(getDevicesGuardGuardId()));
+        sj.add("locationId = " + Objects.toString(getLocationId()));
+        sj.add("name = "       + Objects.toString(getName()));
+        sj.add("type = "       + Objects.toString(getType()));
         return "LocationImpl " + sj.toString();
     }
     
@@ -87,9 +72,8 @@ public abstract class GeneratedLocationImpl implements Location {
         if (!(that instanceof Location)) { return false; }
         final Location thatLocation = (Location)that;
         if (this.getLocationId() != thatLocation.getLocationId()) { return false; }
-        if (!Objects.equals(this.getLName(), thatLocation.getLName())) { return false; }
-        if (!Objects.equals(this.getLType(), thatLocation.getLType())) { return false; }
-        if (this.getDevicesGuardGuardId() != thatLocation.getDevicesGuardGuardId()) { return false; }
+        if (!Objects.equals(this.getName(), thatLocation.getName())) { return false; }
+        if (!Objects.equals(this.getType(), thatLocation.getType())) { return false; }
         return true;
     }
     
@@ -97,9 +81,8 @@ public abstract class GeneratedLocationImpl implements Location {
     public int hashCode() {
         int hash = 7;
         hash = 31 * hash + Integer.hashCode(getLocationId());
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getLName()));
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getLType()));
-        hash = 31 * hash + Integer.hashCode(getDevicesGuardGuardId());
+        hash = 31 * hash + Objects.hashCode(getName());
+        hash = 31 * hash + Objects.hashCode(getType());
         return hash;
     }
 }

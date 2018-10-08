@@ -13,7 +13,8 @@ public class Setup {
 
     @Bean
     public AcsApplication createApplication() {
-        return new AcsApplicationBuilder().withIpAddress("192.168.122.5").withUsername("alano").withPassword("Iknow").build();
+        //return new AcsApplicationBuilder().withIpAddress("192.168.122.5").withUsername("alano").withPassword("Iknow").build();
+        return new AcsApplicationBuilder().withIpAddress("localhost").withUsername("root").withPassword("tL^f8XEF").build();
     }
 
     @Bean
@@ -21,11 +22,4 @@ public class Setup {
         return new Jackson2ObjectMapperBuilder().indentOutput(true);
     }
 
-    @Bean
-    public MultipartConfigurations multipartConfigurations(){
-        MultipartConfigurations multipartConfigurations = new MultipartConfigurations();
-        multipartConfigurations.setMaxFileSize("20MB");
-        multipartConfigurations.setMaxRequestSize("20MB");
-        return multipartConfigurations;
-    }
 }

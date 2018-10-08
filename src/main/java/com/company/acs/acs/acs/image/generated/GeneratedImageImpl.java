@@ -4,13 +4,10 @@ import com.company.acs.acs.acs.device.Device;
 import com.company.acs.acs.acs.image.Image;
 import com.speedment.common.annotation.GeneratedCode;
 import com.speedment.runtime.core.manager.Manager;
-import com.speedment.runtime.core.util.OptionalUtil;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.Objects;
-import java.util.Optional;
-import java.util.OptionalInt;
 import java.util.StringJoiner;
 
 /**
@@ -28,7 +25,7 @@ public abstract class GeneratedImageImpl implements Image {
     private int imageId;
     private Blob image;
     private Timestamp timeStamp;
-    private Integer imageDevice;
+    private int imageDevice;
     
     protected GeneratedImageImpl() {}
     
@@ -48,8 +45,8 @@ public abstract class GeneratedImageImpl implements Image {
     }
     
     @Override
-    public OptionalInt getImageDevice() {
-        return OptionalUtil.ofNullable(imageDevice);
+    public int getImageDevice() {
+        return imageDevice;
     }
     
     @Override
@@ -71,18 +68,14 @@ public abstract class GeneratedImageImpl implements Image {
     }
     
     @Override
-    public Image setImageDevice(Integer imageDevice) {
+    public Image setImageDevice(int imageDevice) {
         this.imageDevice = imageDevice;
         return this;
     }
     
     @Override
-    public Optional<Device> findImageDevice(Manager<Device> foreignManager) {
-        if (getImageDevice().isPresent()) {
-            return foreignManager.stream().filter(Device.DEVICE_ID.equal(getImageDevice().getAsInt())).findAny();
-        } else {
-            return Optional.empty();
-        }
+    public Device findImageDevice(Manager<Device> foreignManager) {
+        return foreignManager.stream().filter(Device.DEVICE_ID.equal(getImageDevice())).findAny().orElse(null);
     }
     
     @Override
@@ -91,7 +84,7 @@ public abstract class GeneratedImageImpl implements Image {
         sj.add("imageId = "     + Objects.toString(getImageId()));
         sj.add("image = "       + Objects.toString(getImage()));
         sj.add("timeStamp = "   + Objects.toString(getTimeStamp()));
-        sj.add("imageDevice = " + Objects.toString(OptionalUtil.unwrap(getImageDevice())));
+        sj.add("imageDevice = " + Objects.toString(getImageDevice()));
         return "ImageImpl " + sj.toString();
     }
     
@@ -103,7 +96,7 @@ public abstract class GeneratedImageImpl implements Image {
         if (this.getImageId() != thatImage.getImageId()) { return false; }
         if (!Objects.equals(this.getImage(), thatImage.getImage())) { return false; }
         if (!Objects.equals(this.getTimeStamp(), thatImage.getTimeStamp())) { return false; }
-        if (!Objects.equals(this.getImageDevice(), thatImage.getImageDevice())) { return false; }
+        if (this.getImageDevice() != thatImage.getImageDevice()) { return false; }
         return true;
     }
     
@@ -113,7 +106,7 @@ public abstract class GeneratedImageImpl implements Image {
         hash = 31 * hash + Integer.hashCode(getImageId());
         hash = 31 * hash + Objects.hashCode(getImage());
         hash = 31 * hash + Objects.hashCode(getTimeStamp());
-        hash = 31 * hash + Objects.hashCode(OptionalUtil.unwrap(getImageDevice()));
+        hash = 31 * hash + Integer.hashCode(getImageDevice());
         return hash;
     }
 }
