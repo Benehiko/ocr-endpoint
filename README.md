@@ -16,3 +16,10 @@ Ocr-core (OCR server for numberplate extraction)
 Acs-Raspberry (Automatic system for capturing vehicle numberplates)
 Acs-ControlPanel (Website for controlling certain areas of the system)
 Acs-App (Android Mobile app for taking manual pictures of a vehicles numberplate)
+
+
+## Licensing
+
+Copyright (c) The DreamTeam
+Copyright (c) Monash South Africa
+Copyright (c) Aztomix
