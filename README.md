@@ -21,5 +21,10 @@ Acs-App (Android Mobile app for taking manual pictures of a vehicles numberplate
 ## Licensing
 
 Copyright (c) The DreamTeam
+
 Copyright (c) Monash South Africa
+
 Copyright (c) Aztomix
+
+All rights reserved.
+
