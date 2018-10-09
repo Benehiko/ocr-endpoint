@@ -13,8 +13,11 @@ The system is a combination of Automatic NumberPlate Recognition (ANPR) and secu
 ## Other software packages in the system
 
 Ocr-core (OCR server for numberplate extraction)
+
 Acs-Raspberry (Automatic system for capturing vehicle numberplates)
+
 Acs-ControlPanel (Website for controlling certain areas of the system)
+
 Acs-App (Android Mobile app for taking manual pictures of a vehicles numberplate)
 
 
