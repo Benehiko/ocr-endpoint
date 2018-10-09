@@ -10,6 +10,10 @@ The DreamTeam is a Monash University undergrad team building a software solution
 
 The system is a combination of Automatic NumberPlate Recognition (ANPR) and security. The whole system provides a certain company, specifically our employers (Aztomix) to see the comings and goings of vehicles on their premise (known and unknown), thus the name Access Control System (ACS) was born.
 
+## Full Installation Guide
+
+[Setup](https://github.com/Benehiko/ocr-endpoint/wiki)
+
 ## Other software packages in the system
 
 Ocr-core (OCR server for numberplate extraction)
