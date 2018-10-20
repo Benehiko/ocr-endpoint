@@ -13,7 +13,7 @@ public class Setup {
 
     @Bean
     public AcsApplication createApplication() {
-        return new AcsApplicationBuilder().withIpAddress("localhost").withUsername("root").withPassword("Iknow").build();
+        return new AcsApplicationBuilder().withIpAddress("192.168.1.108").withUsername("root").withPassword("Iknow").build();
     }
 
     @Bean
