@@ -47,25 +47,24 @@ public class AuthController {
 
     @PostMapping(path = "register/mobile", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    boolean registerMobile(@RequestBody DeviceAuth deviceAuth, Device device) throws UnsupportedEncodingException {
+    boolean registerMobile(@RequestBody DeviceAuth deviceAuth) throws UnsupportedEncodingException {
         if (deviceAuth != null) {
             byte[] salt = getSalt();
             char[] password = (deviceAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
             byte[] hash = genHash(password, salt);
-            OptionalInt userID = device.getDeviceUser();
-            if (userID.isPresent()) {
-                Optional<User> user = userManager.stream().filter(User.USER_ID.equal(userID.getAsInt())).findFirst();
-                if (user.isPresent()) {
-                    String h = getStringFromBytes(hash);
-                    UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(getStringFromBytes(salt));
-                    try {
-                        userAuth2Manager.persist(userAuth2);
-                        return true;
-                    } catch (SpeedmentException e) {
-                        System.out.println(e.getMessage());
-                    }
+            int userID = deviceAuth.getUserid();
+            Optional<User> user = userManager.stream().filter(User.USER_ID.equal(userID)).findFirst();
+            if (user.isPresent()) {
+                String h = getStringFromBytes(hash);
+                UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(getStringFromBytes(salt));
+                try {
+                    userAuth2Manager.persist(userAuth2);
+                    return true;
+                } catch (SpeedmentException e) {
+                    System.out.println(e.getMessage());
                 }
             }
+
         }
         return false;
     }
@@ -157,11 +156,11 @@ public class AuthController {
         return Arrays.equals(h, hash);
     }
 
-    private String getStringFromBytes(byte[] b){
+    private String getStringFromBytes(byte[] b) {
         return Base64.getEncoder().encodeToString(b);
     }
 
-    private byte[] getBytesFromString(String s){
+    private byte[] getBytesFromString(String s) {
         return Base64.getDecoder().decode(s);
     }
 }

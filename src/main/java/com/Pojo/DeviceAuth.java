@@ -10,6 +10,9 @@ public class DeviceAuth {
     @JsonProperty("password")
     private String password;
 
+    @JsonProperty("userid")
+    private int userid;
+
     public String getMac() {
         return mac;
     }
@@ -24,5 +27,13 @@ public class DeviceAuth {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
 }
