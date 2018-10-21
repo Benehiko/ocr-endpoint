@@ -73,6 +73,7 @@ public class AuthController {
     @ResponseBody
     boolean registerWebsite(@RequestBody WebsiteAuth websiteAuth) throws UnsupportedEncodingException {
         if (websiteAuth != null) {
+            System.out.println(websiteAuth.getUsername());
             String username = websiteAuth.getUsername();
             Optional<User> user = userManager.stream().filter(User.USERNAME.equalIgnoreCase(username)).findFirst();
             if (user.isPresent()) {

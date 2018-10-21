@@ -218,8 +218,9 @@ public class DBController {
         if (user.isPresent()) {
             FleetVehicle fleetVehicle = new FleetVehicleImpl().setNumberplate(numberplate).setFleetUser(user.get().getUserId());
             fleetVehicleManager.persist(fleetVehicle);
+            return true;
         }
-        return true;
+        return false;
     }
 
     @DeleteMapping("fleetvehicles")
