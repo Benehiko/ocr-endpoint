@@ -571,5 +571,20 @@ public class DBController {
         return false;
     }
 
+    @DeleteMapping("usergroups/{name}")
+    @ResponseBody
+    boolean removeUserGroup(@PathVariable("name") String name) {
+        try {
+            Optional<UserGroup> userGroup = userGroupManager.stream().filter(UserGroup.NAME.equalIgnoreCase(name)).findFirst();
+            if (userGroup.isPresent()) {
+                userGroupManager.remove(userGroup.get());
+                return true;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
 
 }
