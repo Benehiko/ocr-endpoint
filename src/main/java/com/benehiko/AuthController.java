@@ -46,6 +46,7 @@ public class AuthController {
     @PostMapping(path = "register/mobile", produces = "application/json")
     @ResponseBody
     boolean registerMobile(@RequestParam("mac") String mac, @RequestParam("password") long password, @RequestParam("userid") int userid) {
+        System.out.println("Mac " + mac + " Password: " + password + " userid: " + userid);
         byte[] salt = getSalt();
         char[] pw = (password + getStringFromBytes(salt)).toCharArray();
         byte[] hash = genHash(pw, salt);
