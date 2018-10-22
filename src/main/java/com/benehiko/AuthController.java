@@ -45,26 +45,27 @@ public class AuthController {
 
     @PostMapping(path = "register/mobile", produces = "application/json")
     @ResponseBody
-    boolean registerMobile(@RequestParam("mac") String mac, @RequestParam("password") long password, @RequestParam("userid") int userid) {
-        System.out.println("Mac " + mac + " Password: " + password + " userid: " + userid);
-        byte[] salt = getSalt();
-        char[] pw = (password + getStringFromBytes(salt)).toCharArray();
-        byte[] hash = genHash(pw, salt);
-        Optional<User> user = userManager.stream().filter(User.USER_ID.equal(userid)).findFirst();
-        if (user.isPresent()) {
-            System.out.println("User: " + user.get().getUserId());
-            Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac).and(Device.DEVICE_USER.equal(user.get().getUserId()))).findFirst();
-            if (device.isPresent()) {
-                String h = getStringFromBytes(hash);
-                UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(getStringFromBytes(salt));
-                System.out.println("Hash: " + userAuth2.getHash());
-                try {
+    boolean registerMobile(@RequestParam("mac") String mac, @RequestParam("password") int password, @RequestParam("username") String username) {
+        System.out.println("Mac " + mac + " Password: " + password + " userid: " + username);
+        try {
+            byte[] salt = getSalt();
+            char[] pw = (password + getStringFromBytes(salt)).toCharArray();
+            byte[] hash = genHash(pw, salt);
+            Optional<User> user = userManager.stream().filter(User.USERNAME.equalIgnoreCase(username)).findAny();
+            if (user.isPresent()) {
+                int userId = user.get().getUserId();
+                System.out.println("User: " + user.get().getUserId());
+                Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac).and(Device.DEVICE_USER.equal(userId))).findAny();
+                if (device.isPresent()) {
+                    String h = getStringFromBytes(hash);
+                    UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(getStringFromBytes(salt));
+                    System.out.println("Hash: " + userAuth2.getHash());
                     userAuth2Manager.persist(userAuth2);
                     return true;
-                } catch (SpeedmentException e) {
-                    System.out.println(e.getMessage());
                 }
             }
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
         return false;
     }
