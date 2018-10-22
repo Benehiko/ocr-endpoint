@@ -565,6 +565,7 @@ public class DBController {
         try {
             UserGroup userGroup = new UserGroupImpl().setName(name).setLevel(level);
             userGroupManager.persist(userGroup);
+            return true;
         } catch (SpeedmentException e) {
             System.out.println(e.getMessage());
         }

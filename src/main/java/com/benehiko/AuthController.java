@@ -51,10 +51,12 @@ public class AuthController {
         byte[] hash = genHash(pw, salt);
         Optional<User> user = userManager.stream().filter(User.USER_ID.equal(userid)).findFirst();
         if (user.isPresent()) {
-            Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).filter(Device.DEVICE_USER.equal(user.get().getUserId())).findFirst();
+            System.out.println("User: " + user.get().getUserId());
+            Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac).and(Device.DEVICE_USER.equal(user.get().getUserId()))).findFirst();
             if (device.isPresent()) {
                 String h = getStringFromBytes(hash);
                 UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(getStringFromBytes(salt));
+                System.out.println("Hash: " + userAuth2.getHash());
                 try {
                     userAuth2Manager.persist(userAuth2);
                     return true;
