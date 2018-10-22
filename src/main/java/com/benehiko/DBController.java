@@ -173,9 +173,9 @@ public class DBController {
     }
 
 
-    @DeleteMapping("devices")
+    @DeleteMapping("devices/{mac}")
     @ResponseBody
-    boolean removeDevice(@RequestParam("mac") String mac) {
+    boolean removeDevice(@PathVariable String mac) {
         try {
             Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).findFirst();
             if (device.isPresent()) {
@@ -250,9 +250,9 @@ public class DBController {
         return false;
     }
 
-    @DeleteMapping("fleetvehicles")
+    @DeleteMapping("fleetvehicles/{numberplate}")
     @ResponseBody
-    boolean removeFleetVehicle(@RequestParam("numberplate") String numberplate) throws SpeedmentException {
+    boolean removeFleetVehicle(@PathVariable String numberplate) throws SpeedmentException {
         Optional<FleetVehicle> fleetVehicle = fleetVehicleManager.stream().filter(FleetVehicle.NUMBERPLATE.equalIgnoreCase(numberplate)).findFirst();
         fleetVehicle.ifPresent(fleetVehicleManager::remove);
         return true;
@@ -351,9 +351,9 @@ public class DBController {
      * @param username
      * @return
      */
-    @DeleteMapping("users")
+    @DeleteMapping("users/{username}")
     @ResponseBody
-    boolean removeUser(@RequestParam("username") String username) {
+    boolean removeUser(@PathVariable String username) {
         try {
             Optional<User> user = userManager.stream().filter(User.USERNAME.equal(username)).findFirst();
             if (user.isPresent()) {

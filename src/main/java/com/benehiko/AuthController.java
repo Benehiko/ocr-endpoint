@@ -1,6 +1,5 @@
 package com.benehiko;
 
-import com.Pojo.DeviceAuth;
 import com.Pojo.WebsiteAuth;
 import com.company.acs.AcsApplication;
 import com.company.acs.acs.acs.device.Device;
@@ -27,7 +26,6 @@ import java.security.spec.InvalidKeySpecException;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Optional;
-import java.util.OptionalInt;
 
 @RestController
 @RequestMapping("/auth")
@@ -45,16 +43,16 @@ public class AuthController {
         userManager = app.getOrThrow(UserManager.class);
     }
 
-    @PostMapping(path = "register/mobile", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "register/mobile", produces = "application/json")
     @ResponseBody
-    boolean registerMobile(@RequestBody DeviceAuth deviceAuth) throws UnsupportedEncodingException {
-        if (deviceAuth != null) {
-            byte[] salt = getSalt();
-            char[] password = (deviceAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
-            byte[] hash = genHash(password, salt);
-            int userID = deviceAuth.getUserid();
-            Optional<User> user = userManager.stream().filter(User.USER_ID.equal(userID)).findFirst();
-            if (user.isPresent()) {
+    boolean registerMobile(@RequestParam("mac") String mac, @RequestParam("password") long password, @RequestParam("userid") int userid) {
+        byte[] salt = getSalt();
+        char[] pw = (password + getStringFromBytes(salt)).toCharArray();
+        byte[] hash = genHash(pw, salt);
+        Optional<User> user = userManager.stream().filter(User.USER_ID.equal(userid)).findFirst();
+        if (user.isPresent()) {
+            Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).filter(Device.DEVICE_USER.equal(user.get().getUserId())).findFirst();
+            if (device.isPresent()) {
                 String h = getStringFromBytes(hash);
                 UserAuth2 userAuth2 = new UserAuth2Impl().setAuthUserId(user.get().getUserId()).setHash(h).setSalt(getStringFromBytes(salt));
                 try {
@@ -64,10 +62,10 @@ public class AuthController {
                     System.out.println(e.getMessage());
                 }
             }
-
         }
         return false;
     }
+
 
     @PostMapping(path = "register/website", consumes = "application/json", produces = "application/json")
     @ResponseBody
@@ -93,33 +91,27 @@ public class AuthController {
         return false;
     }
 
-    @PostMapping(path = "login/mobile", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "login/mobile", produces = "application/json")
     @ResponseBody
-    boolean authMobile(@RequestBody DeviceAuth deviceAuth) throws UnsupportedEncodingException {
-        if (deviceAuth != null) {
-            String mac = deviceAuth.getMac();
-            String password = deviceAuth.getPassword();
-
-            Optional<Device> tmpDevice = deviceManager.stream().filter(Device.MAC.equal(mac)).findFirst();
-            if (tmpDevice.isPresent()) {
-                OptionalInt optionalInt = tmpDevice.get().getDeviceUser();
-                if (optionalInt.isPresent()) {
-                    User tmpUser = userManager.stream().filter(User.USER_ID.equal(optionalInt.getAsInt())).findFirst().orElse(null);
-                    if (tmpUser != null) {
-                        UserAuth2 userAuth2 = userAuth2Manager.stream().filter(UserAuth2.AUTH_USER_ID.equal(tmpUser.getUserId())).findFirst().orElse(null);
-                        if (userAuth2 != null) {
-                            byte[] hash = getBytesFromString(userAuth2.getHash());
-                            byte[] salt = getBytesFromString(userAuth2.getHash());
-                            char[] pass = (deviceAuth.getPassword() + getStringFromBytes(salt)).toCharArray();
-                            return checkPassword(pass, hash, salt);
-                        }
+    boolean authMobile(@RequestParam("mac") String mac, @RequestParam("password") long password) throws UnsupportedEncodingException {
+        Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).findFirst();
+        if (device.isPresent()) {
+            if (device.get().getDeviceUser().isPresent()) {
+                Optional<User> user = userManager.stream().filter(User.USER_ID.equal(device.get().getDeviceUser().getAsInt())).findFirst();
+                if (user.isPresent()) {
+                    Optional<UserAuth2> userAuth2 = userAuth2Manager.stream().filter(UserAuth2.AUTH_USER_ID.equal(user.get().getUserId())).findFirst();
+                    if (userAuth2.isPresent()) {
+                        byte[] hash = getBytesFromString(userAuth2.get().getHash());
+                        byte[] salt = getBytesFromString(userAuth2.get().getSalt());
+                        char[] pass = (password + getStringFromBytes(salt)).toCharArray();
+                        return checkPassword(pass, hash, salt);
                     }
-
                 }
             }
         }
         return false;
     }
+
 
     @PostMapping(path = "login/website", consumes = "application/json", produces = "application/json")
     @ResponseBody
