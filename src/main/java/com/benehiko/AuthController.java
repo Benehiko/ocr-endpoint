@@ -43,7 +43,7 @@ public class AuthController {
         userManager = app.getOrThrow(UserManager.class);
     }
 
-    @PostMapping(path = "register/mobile", produces = "application/json")
+    @PostMapping("register/mobile")
     @ResponseBody
     boolean registerMobile(@RequestParam("mac") String mac, @RequestParam("password") int password, @RequestParam("username") String username) {
         System.out.println("Mac " + mac + " Password: " + password + " userid: " + username);
@@ -95,7 +95,7 @@ public class AuthController {
         return false;
     }
 
-    @PostMapping(path = "login/mobile", produces = "application/json")
+    @PostMapping("login/mobile")
     @ResponseBody
     boolean authMobile(@RequestParam("mac") String mac, @RequestParam("password") long password) throws UnsupportedEncodingException {
         Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).findFirst();
