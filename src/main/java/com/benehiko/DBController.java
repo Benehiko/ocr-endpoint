@@ -39,6 +39,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 
@@ -159,6 +160,12 @@ public class DBController {
         return deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).findAny();
     }
 
+    @GetMapping("devices/{limit}")
+    @ResponseBody
+    List<Device> getDevicesLimit(@PathVariable long limit) {
+        return deviceManager.stream().limit(limit).sorted(Device.DEVICE_ID.reversed()).collect(Collectors.toList());
+    }
+
     @GetMapping("devices")
     @ResponseBody
     List getDevices() {
@@ -200,6 +207,7 @@ public class DBController {
     FleetVehicle getFleetByNumberplate(@PathVariable String numberplate) {
         return fleetVehicleManager.stream().filter(FleetVehicle.NUMBERPLATE.equal(numberplate)).findAny().orElse(null);
     }
+
 
     /**
      * Return all fleet vehicles
@@ -402,6 +410,14 @@ public class DBController {
     List<Numberplate> getVehicles() {
         return numberplateManager.stream().collect(toList());
     }
+
+
+    @GetMapping("vehicles/{limit}")
+    @ResponseBody
+    List<Numberplate> getVehiclesLimit(@PathVariable long limit) {
+        return numberplateManager.stream().limit(limit).sorted(Numberplate.NUMBERPLATE_ID.reversed()).collect(Collectors.toList());
+    }
+
 
     @GetMapping("vehicles/byNumberplate/{numberplate}")
     @ResponseBody

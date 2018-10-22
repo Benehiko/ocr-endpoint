@@ -107,22 +107,24 @@ public class OcrController {
 
         results.forEach(ocr -> {
             if (ocr != null) {
-                outputs.add(ocr.getResult());
-                Device device = deviceManager.stream().filter(Device.MAC.containsIgnoreCase(mac)).findFirst().orElse(null);
-                if (device != null) {
-                    Blob blob = null;
-                    try {
-                        blob = new javax.sql.rowset.serial.SerialBlob(ocr.getBytes());
-                        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-                        Date parsedDate = dateFormat.parse(timestamp);
-                        Timestamp t = new java.sql.Timestamp(parsedDate.getTime());
-                        Image image = new ImageImpl().setImage(blob).setImageDevice(device.getDeviceId()).setTimeStamp(t);
-                        imageManager.persist(image);
-                        String ocrResult = ocr.getResult().replace("[", "").replace("]", "");
-                        Numberplate numberplate = new NumberplateImpl().setNumberplateImage(image.getImageId()).setNumberplatestring(ocrResult);
-                        numberplateManager.persist(numberplate);
-                    } catch (SQLException | SpeedmentException | ParseException | IOException e) {
-                        e.printStackTrace();
+                if (!ocr.getResult().replace("[", "").replace("]", "").equals("")) {
+                    outputs.add(ocr.getResult());
+                    Device device = deviceManager.stream().filter(Device.MAC.containsIgnoreCase(mac)).findFirst().orElse(null);
+                    if (device != null) {
+                        Blob blob = null;
+                        try {
+                            blob = new javax.sql.rowset.serial.SerialBlob(ocr.getBytes());
+                            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                            Date parsedDate = dateFormat.parse(timestamp);
+                            Timestamp t = new java.sql.Timestamp(parsedDate.getTime());
+                            Image image = new ImageImpl().setImage(blob).setImageDevice(device.getDeviceId()).setTimeStamp(t);
+                            imageManager.persist(image);
+                            String ocrResult = ocr.getResult().replace("[", "").replace("]", "");
+                            Numberplate numberplate = new NumberplateImpl().setNumberplateImage(image.getImageId()).setNumberplatestring(ocrResult);
+                            numberplateManager.persist(numberplate);
+                        } catch (SQLException | SpeedmentException | ParseException | IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
             }
