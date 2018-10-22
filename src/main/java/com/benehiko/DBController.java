@@ -102,15 +102,15 @@ public class DBController {
     @PutMapping("devices/addUser/byMac")
     @ResponseBody
     boolean addDeviceUserByMac(@RequestParam("mac") String mac, @RequestParam("username") String username) {
-        try{
+        try {
             Optional<User> user = userManager.stream().filter(User.USERNAME.equalIgnoreCase(username)).findFirst();
             Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).findFirst();
-            if (user.isPresent() && device.isPresent()){
+            if (user.isPresent() && device.isPresent()) {
                 device.get().setDeviceUser(user.get().getUserId());
                 deviceManager.update(device.get());
                 return true;
             }
-        }catch (SpeedmentException e){
+        } catch (SpeedmentException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -118,17 +118,17 @@ public class DBController {
 
     @PutMapping("devices/addLocation/byMac")
     @ResponseBody
-    boolean addDeviceLocationByMac(@RequestParam("mac") String mac, @RequestParam("location") int locationId){
-        try{
+    boolean addDeviceLocationByMac(@RequestParam("mac") String mac, @RequestParam("location") int locationId) {
+        try {
             Optional<Location> location = locationManager.stream().filter(Location.LOCATION_ID.equal(locationId)).findFirst();
             Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).findFirst();
 
-            if (device.isPresent() && location.isPresent()){
+            if (device.isPresent() && location.isPresent()) {
                 device.get().setDeviceLocation(location.get().getLocationId());
                 deviceManager.update(device.get());
                 return true;
             }
-        } catch (SpeedmentException e){
+        } catch (SpeedmentException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -165,6 +165,25 @@ public class DBController {
         return deviceManager.stream().collect(toList());
     }
 
+
+    @DeleteMapping("devices")
+    @ResponseBody
+    boolean removeDevice(@RequestParam("mac") String mac) {
+        try {
+            Optional<Device> device = deviceManager.stream().filter(Device.MAC.equalIgnoreCase(mac)).findFirst();
+            if (device.isPresent()) {
+                deviceManager.remove(device.get());
+                return true;
+            } else {
+                return false;
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
+    }
+
+
     /*
     /------------------------/
     Fleet Vehicles part
@@ -195,7 +214,7 @@ public class DBController {
 
     @GetMapping("fleetvehiclesWithUsers")
     @ResponseBody
-    List getFleetWithUsers(){
+    List getFleetWithUsers() {
         List result = new ArrayList<>();
         Join<Tuple2<FleetVehicle, User>> join = joinComponent.from(FleetVehicleManager.IDENTIFIER).innerJoinOn(User.USER_ID).equal(FleetVehicle.FLEET_USER).build(Tuples::of);
         join.stream().forEachOrdered(result::add);
@@ -204,7 +223,7 @@ public class DBController {
 
     @GetMapping("fleetvehiclesWithUsers/byUsername/{username}")
     @ResponseBody
-    List getFleetWithUsersByUsername(@PathVariable String numberplate){
+    List getFleetWithUsersByUsername(@PathVariable String numberplate) {
         List result = new ArrayList();
         Join<Tuple2<FleetVehicle, User>> join = joinComponent.from(FleetVehicleManager.IDENTIFIER).innerJoinOn(User.USER_ID).equal(FleetVehicle.FLEET_USER).build(Tuples::of);
         join.stream().forEachOrdered(result::add);
@@ -386,7 +405,7 @@ public class DBController {
 
     @GetMapping("vehicles/byNumberplate/{numberplate}")
     @ResponseBody
-    List<Numberplate> getVehiclesByNumberplate(@PathVariable String numberplate){
+    List<Numberplate> getVehiclesByNumberplate(@PathVariable String numberplate) {
         return numberplateManager.stream().filter(Numberplate.NUMBERPLATESTRING.equalIgnoreCase(numberplate)).collect(toList());
     }
 
@@ -424,7 +443,7 @@ public class DBController {
 
     @GetMapping("vehicles/byDevice/{alias}")
     @ResponseBody
-    Map<Integer, List<Numberplate>> getVehiclesByDevice(@PathVariable String alias){
+    Map<Integer, List<Numberplate>> getVehiclesByDevice(@PathVariable String alias) {
         List<Device> devices = deviceManager.stream().filter(Device.ALIAS.equalIgnoreCase(alias)).collect(toList());
         Map<Integer, List<Numberplate>> resultset = new HashMap<>();
         devices.forEach(i -> {
@@ -445,7 +464,7 @@ public class DBController {
         String out = null;
         if (numberplate.isPresent()) {
             Optional<Blob> blob = imageManager.stream().filter(Image.IMAGE_ID.equal(numberplate.get().getNumberplateImage())).map(Image::getImage).findFirst();
-            if (blob.isPresent()){
+            if (blob.isPresent()) {
                 try {
                     InputStream is = blob.get().getBinaryStream();
                     byte[] b = is.readAllBytes();
@@ -460,7 +479,6 @@ public class DBController {
     }
 
 
-
     /*
     /-----------------/
     Location
@@ -468,28 +486,28 @@ public class DBController {
      */
     @GetMapping("locations")
     @ResponseBody
-    List getLocations(){
+    List getLocations() {
         return locationManager.stream().collect(toList());
     }
 
     @GetMapping("locations/{id}")
-    Optional<Location> getLocationById(@PathVariable int id){
+    Optional<Location> getLocationById(@PathVariable int id) {
         return locationManager.stream().filter(Location.LOCATION_ID.equal(id)).findFirst();
     }
 
     @GetMapping("locations/{name}")
-    List<Location> getLocationsByName(@PathVariable String name){
+    List<Location> getLocationsByName(@PathVariable String name) {
         return locationManager.stream().filter(Location.NAME.equalIgnoreCase(name)).collect(toList());
     }
 
     @PostMapping("locations")
     @ResponseBody
-    boolean addLocation(@RequestParam("name") String name, @RequestParam("type") String type){
+    boolean addLocation(@RequestParam("name") String name, @RequestParam("type") String type) {
         try {
             Location location = new LocationImpl().setName(name).setType(type);
             locationManager.persist(location);
             return true;
-        }catch (SpeedmentException e){
+        } catch (SpeedmentException e) {
             System.out.println(e.getMessage());
         }
         return false;
@@ -497,16 +515,16 @@ public class DBController {
 
     @PutMapping("locations")
     @ResponseBody
-    boolean updateLocation(@RequestParam("id") int id, @RequestParam("name") String name, @RequestParam("type") String type){
-        try{
+    boolean updateLocation(@RequestParam("id") int id, @RequestParam("name") String name, @RequestParam("type") String type) {
+        try {
             Optional<Location> location = locationManager.stream().filter(Location.LOCATION_ID.equal(id)).findFirst();
 
-            if (location.isPresent()){
+            if (location.isPresent()) {
                 Location tmp = location.get().setName(name).setType(type);
                 locationManager.update(tmp);
                 return true;
             }
-        }catch (SpeedmentException e){
+        } catch (SpeedmentException e) {
             System.out.println(e.getMessage());
         }
         return true;
@@ -521,17 +539,17 @@ public class DBController {
 
     @GetMapping("usergroups")
     @ResponseBody
-    List<UserGroup> getUserGroups(){
+    List<UserGroup> getUserGroups() {
         return userGroupManager.stream().collect(toList());
     }
 
     @PostMapping("usergroups")
     @ResponseBody
-    boolean addUserGroup(@RequestParam("name") String name, @RequestParam("level") int level){
+    boolean addUserGroup(@RequestParam("name") String name, @RequestParam("level") int level) {
         try {
             UserGroup userGroup = new UserGroupImpl().setName(name).setLevel(level);
             userGroupManager.persist(userGroup);
-        }catch (SpeedmentException e){
+        } catch (SpeedmentException e) {
             System.out.println(e.getMessage());
         }
         return false;

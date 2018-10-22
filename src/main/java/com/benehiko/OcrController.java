@@ -12,6 +12,7 @@ import com.company.acs.acs.acs.numberplate.Numberplate;
 import com.company.acs.acs.acs.numberplate.NumberplateImpl;
 import com.company.acs.acs.acs.numberplate.NumberplateManager;
 import com.speedment.runtime.core.exception.SpeedmentException;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -32,6 +33,7 @@ import static java.util.stream.Collectors.toList;
 @RequestMapping("/ocr")
 public class OcrController {
 
+
     private final DeviceManager deviceManager;
     private final ImageManager imageManager;
     private final NumberplateManager numberplateManager;
@@ -44,9 +46,10 @@ public class OcrController {
         fleetVehicleManager = app.getOrThrow(FleetVehicleManager.class);
     }
 
-    @PostMapping(path = "/pic/pi", produces = "application/json")
-    @ResponseBody
-    void getPiOcr(@RequestParam("timestamp") String timestamp, @RequestParam("mac") String mac, @RequestParam("images") List<MultipartFile> images) {
+    @PostMapping(path = "/pic/pi", consumes = { "multipart/form-data" })
+    @ResponseStatus(HttpStatus.OK)
+    void getPiOcr(@RequestPart("timestamp") String timestamp, @RequestPart("mac") String mac, @RequestParam("images") List<MultipartFile> images) {
+        System.out.println(images.size());
         List<byte[]> imgs = getBytes(images);
         CompletableFuture<Void> future = CompletableFuture.runAsync(() -> {
             try {
@@ -66,7 +69,7 @@ public class OcrController {
         results.forEach(res -> {
             Optional<FleetVehicle> fleetVehicle = fleetVehicleManager.stream().filter(FleetVehicle.NUMBERPLATE.equalIgnoreCase(res)).findFirst();
             boolean isFleet = false;
-            if (fleetVehicle.isPresent()){
+            if (fleetVehicle.isPresent()) {
                 isFleet = true;
             }
             out.put(res, isFleet);
@@ -127,7 +130,7 @@ public class OcrController {
         return outputs;
     }
 
-    private List<byte[]> getBytes(List<MultipartFile> images){
+    private List<byte[]> getBytes(List<MultipartFile> images) {
         List<byte[]> imgs = new ArrayList<>();
         images.forEach((image) -> {
             try {
