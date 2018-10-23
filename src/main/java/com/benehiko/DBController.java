@@ -229,11 +229,11 @@ public class DBController {
         return result;
     }
 
-    @GetMapping("fleetvehiclesWithUsers/byUsername/{username}")
+    @GetMapping("fleetvehiclesWithUsers/byNumberplate/{numberplate}")
     @ResponseBody
-    List getFleetWithUsersByUsername(@PathVariable String numberplate) {
+    List getFleetWithUsersByNumberplate(@PathVariable String numberplate) {
         List result = new ArrayList();
-        Join<Tuple2<FleetVehicle, User>> join = joinComponent.from(FleetVehicleManager.IDENTIFIER).innerJoinOn(User.USER_ID).equal(FleetVehicle.FLEET_USER).build(Tuples::of);
+        Join<Tuple2<FleetVehicle, User>> join = joinComponent.from(FleetVehicleManager.IDENTIFIER).where(FleetVehicle.NUMBERPLATE.equalIgnoreCase(numberplate)).innerJoinOn(User.USER_ID).equal(FleetVehicle.FLEET_USER).build(Tuples::of);
         join.stream().forEachOrdered(result::add);
         return result;
     }
