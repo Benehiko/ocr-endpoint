@@ -435,7 +435,7 @@ public class DBController {
     @GetMapping("vehicles/byDate/{from}/{to}")
     @ResponseBody
     List<Numberplate> getVehiclesByDate(@PathVariable String from, @PathVariable String to) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd H");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd H");
         Date fromParsed = dateFormat.parse(from);
         Date toParsed = dateFormat.parse(to);
         Timestamp fromDate = new java.sql.Timestamp(fromParsed.getTime());
@@ -448,7 +448,7 @@ public class DBController {
     @GetMapping("vehicles/byDateNumberplate/{from}/{to}/{numberplate}")
     @ResponseBody
     List<Numberplate> getVehiclesByDate(@PathVariable String from, @PathVariable String to, @PathVariable String numberplate) throws ParseException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd H");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd H");
         Date fromParsed = dateFormat.parse(from);
         Date toParsed = dateFormat.parse(to);
         Timestamp fromDate = new java.sql.Timestamp(fromParsed.getTime());
